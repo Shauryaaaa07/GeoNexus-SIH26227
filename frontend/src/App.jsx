@@ -7,7 +7,6 @@ import Process from "./components/Process";
 import Section04 from "./components/Section04";
 import Section05 from "./components/Section05";
 import Section06 from "./components/Section06.jsx";
-import Map from "./Map";
 import "./App.css";
 
 function App() {
@@ -938,12 +937,6 @@ function App() {
 
   }, [])
 
-  const scrollToAnalytics = () => {
-    const el = document.getElementById("analytics");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
 
@@ -1059,7 +1052,7 @@ function App() {
           </div>
 
 
-          <button className="explore-btn" onClick={scrollToAnalytics}>
+          <button className="explore-btn">
 
             EXPLORE
 
@@ -1123,7 +1116,7 @@ function App() {
 
           <div className="hero-buttons">
 
-            <button className="primary-btn" onClick={scrollToAnalytics}>
+            <button className="primary-btn">
 
               EXPLORE DASHBOARD →
 
@@ -1211,37 +1204,6 @@ function App() {
 
       </section>
       <EarthChangesSection />
-
-      <section
-        id="analytics"
-        style={{
-          padding: "80px 40px",
-          background: "#060b17",
-          position: "relative",
-          zIndex: 1
-        }}
-      >
-        <h2 style={{
-          color: "#38bdf8",
-          textAlign: "center",
-          fontSize: "1.5rem",
-          letterSpacing: "0.15em",
-          marginBottom: "12px",
-          fontWeight: 700
-        }}>
-          SATELLITE CHANGE ANALYSIS
-        </h2>
-        <p style={{
-          color: "#94a3b8",
-          textAlign: "center",
-          marginBottom: "36px",
-          fontSize: "0.95rem"
-        }}>
-          Multi-temporal change detection across Indian cities
-        </p>
-        <Map />
-      </section>
-
   <Process />
   <Section04/>
   <Section05 />

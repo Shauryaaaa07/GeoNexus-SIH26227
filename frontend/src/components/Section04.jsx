@@ -1,103 +1,76 @@
+import Map from "../Map";
 import "./Section04.css";
-import backgroundImage from "../assets/geonexus-background.png";
+
+import urbanGrowth from "../assets/01_urban_growth.png";
+import infrastructure from "../assets/02_infrastructure.png";
+import vegetation from "../assets/03_vegetation.png";
+import water from "../assets/04_water.png";
+import landUse from "../assets/05_land_use_environment.png";
+import delhiNcrMap from "../assets/06_delhi_ncr_base_map.png";
 
 const analysisData = [
   {
     title: "URBAN GROWTH",
-    value: "+32%",
-    description: "Increase in built-up area",
-    type: "urban",
+    description: "Built-up areas, settlements and development patterns.",
+    image: urbanGrowth,
   },
   {
     title: "INFRASTRUCTURE",
-    value: "+18%",
-    description: "Expansion in road network",
-    type: "infrastructure",
+    description: "Road networks, transport corridors and major structures.",
+    image: infrastructure,
   },
   {
     title: "VEGETATION",
-    value: "-14%",
-    description: "Decrease in vegetation cover",
-    type: "vegetation",
+    description: "Green cover, forests, parks and environmental patterns.",
+    image: vegetation,
   },
   {
     title: "WATER",
-    value: "+06%",
-    description: "Change in water exposure",
-    type: "water",
+    description: "Rivers, lakes, wetlands and surface-water patterns.",
+    image: water,
   },
   {
-    title: "ENVIRONMENT",
-    value: "DETECTED",
-    description: "Flooding, coastline & land-cover changes",
-    type: "environment",
+    title: "LAND USE",
+    description: "Agricultural, urban, industrial and open-land patterns.",
+    image: landUse,
   },
 ];
 
-const detections = [
-  {
-    title: "BUILDING DETECTED",
-    value: "+2.4 km²",
-    type: "building",
-  },
-  {
-    title: "ROAD EXPANSION",
-    value: "+12.6 km",
-    type: "road",
-  },
-  {
-    title: "VEGETATION CHANGE",
-    value: "-3.1 km²",
-    type: "vegetation",
-  },
-  {
-    title: "WATER LEVEL VARIATION",
-    value: "+1.8 km²",
-    type: "water",
-  },
+const observations = [
+  { title: "URBAN STRUCTURE", type: "urban", position: { top: "32%", left: "29%" } },
+  { title: "VEGETATION", type: "vegetation", position: { top: "63%", left: "24%" } },
+  { title: "WATER BODY", type: "water", position: { top: "34%", left: "73%" } },
+  { title: "INFRASTRUCTURE", type: "infrastructure", position: { top: "68%", left: "63%" } },
 ];
 
-function DetectionMarker({ title, value, type }) {
+function ObservationMarker({ title, type, position }) {
   return (
-    <div className={`section04-detection ${type}`}>
-      <span className="section04-detection-dot"></span>
-
-      <div className="section04-detection-line"></div>
-
-      <div className="section04-detection-box">
-        <strong>{title}</strong>
-        <span>{value}</span>
-      </div>
+    <div
+      className={`section04-observation ${type}`}
+      style={{ top: position.top, left: position.left }}
+    >
+      <span className="section04-observation-dot" />
+      <span className="section04-observation-line" />
+      <span className="section04-observation-label">{title}</span>
     </div>
   );
 }
 
-function AnalysisCard({ title, value, description, type }) {
+function AnalysisCard({ title, description, image }) {
   return (
-    <article className={`section04-analysis-card ${type}`}>
-      <div className="section04-card-image"></div>
-
-      <div className="section04-card-content">
-        <span className="section04-card-title">{title}</span>
-
-        <strong className="section04-card-value">
-          {value}
-        </strong>
-
-        <p>{description}</p>
+    <article className="section04-analysis-card">
+      <div className="section04-card-image">
+        <img src={image} alt={title} />
+        <div className="section04-card-image-shade" />
+        <span className="section04-card-index">OBS / {title}</span>
       </div>
 
-      <button className="section04-card-arrow" aria-label={`Explore ${title}`}>
-        →
-      </button>
-
-      <div className="section04-card-graph">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+      <div className="section04-card-content">
+        <div className="section04-card-heading">
+          <span className="section04-card-title">{title}</span>
+          <span className="section04-card-arrow">↗</span>
+        </div>
+        <p>{description}</p>
       </div>
     </article>
   );
@@ -105,142 +78,73 @@ function AnalysisCard({ title, value, description, type }) {
 
 export default function Section04() {
   return (
-    <section className="section04">
+    <section className="section04" id="analytics">
+      {/* REAL DELHI NCR IMAGE — FULL PAGE BACKGROUND */}
+      <div className="section04-atmosphere" aria-hidden="true">
+        <img src={delhiNcrMap} alt="" />
+        <div className="section04-atmosphere-shade" />
+        <div className="section04-atmosphere-vignette" />
+      </div>
 
-      {/* HEADER */}
-      <div className="section04-header">
-
+      <header className="section04-header">
         <div className="section04-number">
-          <span></span>
-          04
+          <span />
+          <strong>04</strong>
         </div>
 
-        <p className="section04-label">
-          WHAT CAN GEONEXUS SEE?
-        </p>
+        <div className="section04-label">WHAT CAN GEONEXUS SEE?</div>
 
         <div className="section04-live-status">
-          <span></span>
-          LIVE SATELLITE VIEW
+          <span />
+          REAL SATELLITE OBSERVATION
         </div>
+      </header>
 
-      </div>
-
-
-      {/* INTRODUCTION */}
       <div className="section04-intro">
-
-        <h2>
-          REAL CHANGES.
-          <br />
-          <span>REAL INTELLIGENCE.</span>
-        </h2>
+        <div>
+          <span className="section04-kicker">EARTH OBSERVATION</span>
+          <h2>
+            READING THE EARTH.
+            <br />
+            <em>IN LAYERS.</em>
+          </h2>
+        </div>
 
         <p>
-          From urban growth to environmental shifts — GeoNexus
-          detects, measures and visualizes the changes that matter.
+          GeoNexus observes the patterns beneath the surface — from urban
+          growth and infrastructure to vegetation, water and land use.
         </p>
-
       </div>
 
+      {/* INTERACTIVE LEAFLET MAP CONTAINER */}
+      <div className="section04-map-container" style={{ minHeight: "650px", position: "relative", zIndex: 10 }}>
+        <Map />
+      </div>
 
-      {/* MAIN SATELLITE ANALYSIS AREA */}
-      <div className="section04-map-container">
+      {/* REAL IMAGE ANALYSIS CARDS */}
+      <div className="section04-analysis">
+        {analysisData.map((item) => (
+          <AnalysisCard key={item.title} {...item} />
+        ))}
+      </div>
 
-        <div className="section04-map">
-
-          {/* Satellite image placeholder */}
-     <div
-  className="section04-satellite-image"
-  style={{ backgroundImage: `url(${backgroundImage})` }}
->
-            <div className="section04-map-grid"></div>
-
-            <div className="section04-map-scan"></div>
-
-            <span className="section04-map-label">
-              MULTI-TEMPORAL SATELLITE DATA
-            </span>
-
-            <span className="section04-map-coordinates">
-              28.6139° N &nbsp; 77.2090° E
-            </span>
-
-            {/* Detection markers */}
-            {detections.map((detection) => (
-              <DetectionMarker
-                key={detection.title}
-                {...detection}
-              />
-            ))}
-
-          </div>
-
-
-          {/* MAP INFORMATION */}
-          <div className="section04-map-info">
-
-            <div>
-              <span>SATELLITE INTELLIGENCE</span>
-              <small>A CLEARER TOMORROW</small>
-            </div>
-
-            <div className="section04-compass">
-              N
-            </div>
-
-          </div>
-
-
-          {/* TIMELINE */}
-          <div className="section04-timeline">
-
-            <span>2021</span>
-
-            <div className="section04-timeline-track">
-              <span className="section04-timeline-progress"></span>
-              <span className="section04-timeline-dot"></span>
-            </div>
-
-            <span>2026</span>
-
-          </div>
-
+      <footer className="section04-footer">
+        <div className="section04-footer-brand">
+          <span>GEONEXUS</span>
+          <i />
+          <small>EARTH OBSERVATION / 04</small>
         </div>
 
-      </div>
+        <p>Observe Earth. Understand change. Empower tomorrow.</p>
 
-
-      {/* ANALYSIS CARDS */}
-      <div className="section04-analysis">
-
-        {analysisData.map((item) => (
-          <AnalysisCard
-            key={item.title}
-            {...item}
-          />
-        ))}
-
-      </div>
-
-
-      {/* FOOTER LINE */}
-      <div className="section04-footer">
-
-        <span>GEONEXUS</span>
-
-        <div></div>
-
-        <small>
-          OBSERVE EARTH. EMPOWER TOMORROW.
-        </small>
-
-        <small>
-          REAL DATA. REAL IMPACT.
-        </small>
-
-      </div>
-
+        <div className="section04-footer-flow">
+          <span>OBSERVE</span>
+          <i>→</i>
+          <span>ANALYZE</span>
+          <i>→</i>
+          <strong>UNDERSTAND</strong>
+        </div>
+      </footer>
     </section>
   );
 }

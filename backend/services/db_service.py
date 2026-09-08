@@ -170,3 +170,82 @@ def get_db_stats(db_path=None):
         "total_records": total_count,
         "interval_breakdown": interval_stats
     }
+
+
+def get_dashboard_stats(city=None, year_from=None, year_to=None, db_path=None):
+    # backend se stats le rahe hain
+    conn = get_db_connection(db_path)
+    cur = conn.cursor()
+    
+    where_clause = " WHERE 1=1"
+    params = []
+    if city:
+        where_clause += " AND LOWER(city) = LOWER(?)"
+        params.append(city)
+    if year_from is not None:
+        where_clause += " AND year_from = ?"
+        params.append(int(year_from))
+    if year_to is not None:
+        where_clause += " AND year_to = ?"
+        params.append(int(year_to))
+        
+    cur.execute(f"SELECT COUNT(*) as total_polygons, SUM(area_m2) as total_area_m2 FROM change_records{where_clause}", params)
+    row = cur.fetchone()
+    total_polygons = row["total_polygons"] or 0
+    total_area_m2 = row["total_area_m2"] or 0.0
+    total_area_km2 = round(total_area_m2 / 1_000_000.0, 2)
+    
+    cur.execute(f"SELECT category, COUNT(*) as count, SUM(area_m2) as area_m2 FROM change_records{where_clause} GROUP BY category ORDER BY area_m2 DESC", params)
+    categories = []
+    for r in cur.fetchall():
+        cnt = r["count"]
+        a_m2 = r["area_m2"] or 0.0
+        a_km2 = round(a_m2 / 1_000_000.0, 2)
+        poly_pct = round((cnt / total_polygons) * 100, 1) if total_polygons > 0 else 0
+        area_pct = round((a_m2 / total_area_m2) * 100, 1) if total_area_m2 > 0 else 0
+        categories.append({
+            "category": r["category"],
+            "count": cnt,
+            "area_m2": a_m2,
+            "area_km2": a_km2,
+            "polygon_percentage": poly_pct,
+            "area_percentage": area_pct
+        })
+        
+    cur.execute(f"SELECT year_from, year_to, COUNT(*) as count, SUM(area_m2) as area_m2 FROM change_records{where_clause} GROUP BY year_from, year_to ORDER BY year_from ASC", params)
+    intervals = []
+    for r in cur.fetchall():
+        intervals.append({
+            "year_from": r["year_from"],
+            "year_to": r["year_to"],
+            "interval": f"{r['year_from']} -> {r['year_to']}",
+            "count": r["count"],
+            "area_m2": r["area_m2"] or 0.0,
+            "area_km2": round((r["area_m2"] or 0.0) / 1_000_000.0, 2)
+        })
+
+    cur.execute(f"SELECT confidence, COUNT(*) as count FROM change_records{where_clause} GROUP BY confidence ORDER BY count DESC", params)
+    confidence = []
+    for r in cur.fetchall():
+        cnt = r["count"]
+        pct = round((cnt / total_polygons) * 100, 1) if total_polygons > 0 else 0
+        confidence.append({
+            "confidence": r["confidence"],
+            "count": cnt,
+            "percentage": pct
+        })
+        
+    cur.execute(f"SELECT id, city, category, year_from, year_to, confidence, area_m2, latitude, longitude FROM change_records{where_clause} ORDER BY area_m2 DESC LIMIT 10", params)
+    largest_polygons = [dict(r) for r in cur.fetchall()]
+    
+    conn.close()
+    
+    return {
+        "total_polygons": total_polygons,
+        "total_area_m2": total_area_m2,
+        "total_area_km2": total_area_km2,
+        "categories": categories,
+        "intervals": intervals,
+        "confidence": confidence,
+        "largest_polygons": largest_polygons
+    }

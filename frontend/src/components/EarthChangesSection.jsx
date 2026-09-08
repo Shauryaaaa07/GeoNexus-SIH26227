@@ -1,620 +1,375 @@
+import { API_BASE_URL } from "../config";
+import { useState, useEffect } from "react";
 import "./EarthChangesSection.css";
 
 import Delhi2021Satellite from "../assets/Delhi2021Satellite.png";
 import Delhi2023Satellite from "../assets/Delhi2023Satellite.png";
 import Delhi2026Satellite from "../assets/Delhi2026Satellite.png";
 
-
 const comparisons = [
   {
-    id: "delhi-2021-2023",
+    id: "2021-2023",
+    from: "2021",
+    to: "2023",
+    imageFrom: Delhi2021Satellite,
+    imageTo: Delhi2023Satellite,
 
-    name: "DELHI",
-
-    coords: "28.5838° N, 77.2528° E",
-
-    theme: "SHORT-TERM TRANSFORMATION",
-
-    beforeYear: "2021",
-    afterYear: "2023",
-
-    beforeImage: Delhi2021Satellite,
-    afterImage: Delhi2023Satellite,
-
-    period: "2021 → 2023",
+    summary:
+      "The clearest visible transition is around the eastern transport corridor, while the central urban fabric and major green spaces remain comparatively stable.",
 
     metrics: [
       {
-        icon: "▥",
-        value: "—",
+        label: "Agricultural Change",
+        score: "302.83 km²",
+        level: "PRIMARY",
+        detail: "4,746 polygons detected",
+      },
+      {
+        label: "Vegetation Change",
+        score: "61.29 km²",
+        level: "SIGNIFICANT",
+        detail: "2,065 polygons detected",
+      },
+      {
         label: "Built-up Area",
-        type: "positive",
+        score: "8.59 km²",
+        level: "URBAN",
+        detail: "885 polygons detected",
       },
       {
-        icon: "▰",
-        value: "—",
-        label: "Infrastructure",
-        type: "positive",
+        label: "Water Body Change",
+        score: "5.56 km²",
+        level: "HYDROLOGICAL",
+        detail: "410 polygons detected",
       },
       {
-        icon: "◒",
-        value: "—",
-        label: "Vegetation Cover",
-        type: "neutral",
-      },
-      {
-        icon: "⌁",
-        value: "—",
-        label: "Road Network",
-        type: "positive",
-      },
-      {
-        icon: "◇",
-        value: "—",
-        label: "New Structures",
-        type: "positive",
+        label: "New Infrastructure",
+        score: "1.93 km²",
+        level: "CORRIDOR",
+        detail: "122 polygons detected",
       },
     ],
   },
 
   {
-    id: "delhi-2021-2026",
+    id: "2021-2026",
+    from: "2021",
+    to: "2026",
+    imageFrom: Delhi2021Satellite,
+    imageTo: Delhi2026Satellite,
 
-    name: "DELHI",
-
-    coords: "28.5838° N, 77.2528° E",
-
-    theme: "LONG-TERM TRANSFORMATION",
-
-    beforeYear: "2021",
-    afterYear: "2026",
-
-    beforeImage: Delhi2021Satellite,
-    afterImage: Delhi2026Satellite,
-
-    period: "2021 → 2026",
+    summary:
+      "Across the longer interval, the central urban structure remains recognizable, while infrastructure and the eastern river corridor show the most noticeable spatial differences.",
 
     metrics: [
       {
-        icon: "▥",
-        value: "—",
-        label: "Built-up Area",
-        type: "positive",
-      },
-      {
-        icon: "▰",
-        value: "—",
         label: "Infrastructure",
-        type: "positive",
+        score: "4 / 5",
+        level: "HIGH",
+        detail: "Persistent transformation",
       },
       {
-        icon: "◒",
-        value: "—",
-        label: "Vegetation Cover",
-        type: "neutral",
+        label: "Road Pattern",
+        score: "4 / 5",
+        level: "HIGH",
+        detail: "Corridor variation visible",
       },
       {
-        icon: "⌁",
-        value: "—",
-        label: "Road Network",
-        type: "positive",
+        label: "Built-up Area",
+        score: "3 / 5",
+        level: "MODERATE",
+        detail: "Localized development",
       },
       {
-        icon: "◇",
-        value: "—",
-        label: "New Structures",
-        type: "positive",
+        label: "Vegetation",
+        score: "1 / 5",
+        level: "LOW",
+        detail: "Major green areas persist",
+      },
+      {
+        label: "Water / Floodplain",
+        score: "3 / 5",
+        level: "VISIBLE",
+        detail: "River-side landscape differs",
       },
     ],
   },
 ];
 
+function ContourField() {
+  const lines = [
+    "M0 80 C100 20 180 150 300 80 S500 20 700 90",
+    "M0 110 C120 50 190 180 320 105 S520 45 700 120",
+    "M0 145 C100 80 210 210 350 135 S540 80 700 150",
+    "M0 180 C130 115 230 240 370 165 S550 110 700 180",
+    "M0 215 C110 155 240 270 390 195 S570 145 700 215",
+    "M0 250 C120 190 250 300 410 225 S580 180 700 250",
+    "M0 285 C130 225 270 330 420 255 S590 215 700 285",
+    "M0 320 C110 260 280 360 440 290 S600 245 700 320",
+  ];
 
-function SatelliteImage({
-  year,
-  image,
-}) {
   return (
-    <div className="ecs-image">
+    <svg
+      className="ecs-contours"
+      viewBox="0 0 700 360"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      {lines.map((path, index) => (
+        <path
+          key={index}
+          d={path}
+          className="ecs-contour-line"
+          style={{ animationDelay: `${index * -0.8}s` }}
+        />
+      ))}
+    </svg>
+  );
+}
 
-      <img
-        src={image}
-        alt={`Delhi satellite imagery from ${year}`}
-      />
+function MetricRow({ metric }) {
+  return (
+    <div className="ecs-metric">
+      <div className="ecs-metric-top">
+        <span>{metric.label}</span>
+        <strong>{metric.score}</strong>
+      </div>
 
-      <div className="ecs-image-overlay" />
+      <div className="ecs-metric-bar">
+        <span
+          style={{
+            width: `${Number(metric.score.split("/")[0]) * 20}%`,
+          }}
+        />
+      </div>
 
-      <span className="ecs-image-source">
-        SENTINEL-2 / COPERNICUS
-      </span>
-
-      <span className="ecs-image-status">
-        SATELLITE FEED
-      </span>
-
-      <span className="ecs-year">
-        {year}
-      </span>
-
+      <div className="ecs-metric-bottom">
+        <span>{metric.level}</span>
+        <small>{metric.detail}</small>
+      </div>
     </div>
   );
 }
 
-
-function ComparisonCard({
-  comparison,
-}) {
+function ComparisonCard({ comparison }) {
   return (
-    <article className="ecs-card">
-
-      {/* CARD HEADER */}
-
-      <div className="ecs-card-header">
-
-        <div className="ecs-location">
-
-          <div className="ecs-location-title">
-
-            <span className="ecs-live-dot" />
-
-            <h3>
-              {comparison.name}
-            </h3>
-
-          </div>
-
-          <span className="ecs-coordinates">
-            {comparison.coords}
-          </span>
-
+    <article className="ecs-comparison-card">
+      <div className="ecs-card-heading">
+        <div>
+          <span className="ecs-location">DELHI / INDIA</span>
+          <h3>
+            {comparison.from}
+            <span> → </span>
+            {comparison.to}
+          </h3>
         </div>
 
-        <div className="ecs-theme">
-
-          <span>
-            TEMPORAL ANALYSIS
-          </span>
-
-          <strong>
-            {comparison.theme}
-          </strong>
-
-        </div>
-
+        <span className="ecs-derived">IMAGE-DERIVED</span>
       </div>
 
+      <div className="ecs-image-comparison">
+        <div className="ecs-image-box">
+          <img
+            src={comparison.imageFrom}
+            alt={`Delhi satellite observation ${comparison.from}`}
+          />
 
-      {/* COMPARISON AREA */}
-
-      <div className="ecs-comparison">
-
-        <SatelliteImage
-          year={comparison.beforeYear}
-          image={comparison.beforeImage}
-        />
-
-
-        <div className="ecs-divider">
-
-          <span>
-            CHANGE
-          </span>
-
-        </div>
-
-
-        <SatelliteImage
-          year={comparison.afterYear}
-          image={comparison.afterImage}
-        />
-
-
-        {/* METRICS */}
-
-        <div className="ecs-metrics">
-
-          <div className="ecs-metrics-header">
-
-            <span>
-              DETECTED SIGNALS
-            </span>
-
-            <b>
-              {comparison.period}
-            </b>
-
+          <div className="ecs-image-label">
+            <span>BASELINE</span>
+            <strong>{comparison.from}</strong>
           </div>
-
-
-          {comparison.metrics.map(
-            (metric) => (
-              <div
-                className="ecs-metric"
-                key={metric.label}
-              >
-
-                <span className="ecs-icon">
-                  {metric.icon}
-                </span>
-
-                <div className="ecs-metric-info">
-
-                  <b
-                    className={
-                      metric.type === "negative"
-                        ? "negative"
-                        : metric.type === "neutral"
-                          ? "neutral"
-                          : ""
-                    }
-                  >
-                    {metric.value}
-                  </b>
-
-                  <small>
-                    {metric.label}
-                  </small>
-
-                </div>
-
-              </div>
-            )
-          )}
-
         </div>
 
+        <div className="ecs-change-divider">
+          <span>CHANGE</span>
+          <i />
+          <b>→</b>
+        </div>
+
+        <div className="ecs-image-box">
+          <img
+            src={comparison.imageTo}
+            alt={`Delhi satellite observation ${comparison.to}`}
+          />
+
+          <div className="ecs-image-label">
+            <span>OBSERVATION</span>
+            <strong>{comparison.to}</strong>
+          </div>
+        </div>
       </div>
 
+      <p className="ecs-summary">{comparison.summary}</p>
+
+      <div className="ecs-metrics">
+        {comparison.metrics.map((metric) => (
+          <MetricRow key={metric.label} metric={metric} />
+        ))}
+      </div>
     </article>
   );
 }
 
-
 export default function EarthChangesSection() {
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/dashboard/stats`)
+      .then((res) => res.json())
+      .then((data) => setStats(data))
+      .catch((err) => console.log("Stats fetch error:", err));
+  }, []);
+  const [activeComparison, setActiveComparison] = useState(0);
 
   const handlePointerMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
 
-    const section =
-      event.currentTarget;
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
 
-    const rect =
-      section.getBoundingClientRect();
-
-    const x =
-      ((event.clientX - rect.left) /
-        rect.width) *
-      100;
-
-    const y =
-      ((event.clientY - rect.top) /
-        rect.height) *
-      100;
-
-    section.style.setProperty(
-      "--mouse-x",
-      `${x}%`
-    );
-
-    section.style.setProperty(
-      "--mouse-y",
-      `${y}%`
-    );
+    event.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+    event.currentTarget.style.setProperty("--mouse-y", `${y}%`);
   };
 
-
-  const resetPointer = (event) => {
-
-    const section =
-      event.currentTarget;
-
-    section.style.setProperty(
-      "--mouse-x",
-      "78%"
-    );
-
-    section.style.setProperty(
-      "--mouse-y",
-      "50%"
-    );
-  };
-
+  const active = comparisons[activeComparison];
 
   return (
     <section
-      className="earth-changes-section"
-
-      onPointerMove={
-        handlePointerMove
-      }
-
-      onPointerLeave={
-        resetPointer
-      }
+      className="ecs-section"
+      onPointerMove={handlePointerMove}
+      id="earth-changes"
     >
+      <div className="ecs-atmosphere" />
+      <div className="ecs-light-orb" />
 
-      {/* ATMOSPHERIC CONTOURS */}
-
-      <div
-        className="ecs-contours"
-        aria-hidden="true"
-      >
-
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-
-      </div>
-
-
-      {/* SOFT DATA GLOW */}
-
-      <div
-        className="ecs-data-glow"
-        aria-hidden="true"
-      />
-
-
-      {/* MAIN CONTENT */}
+      <ContourField />
 
       <div className="ecs-content">
+        <header className="ecs-header">
+          <div className="ecs-eyebrow">
+            <span className="ecs-status-dot" />
+            02 — EARTH OBSERVATION
+          </div>
 
-
-        {/* =================================================
-            LEFT — SATELLITE COMPARISONS
-        ================================================= */}
-
-        <div className="ecs-left">
-
-          <div className="ecs-section-label">
-
-            <span>
-              02
-            </span>
-
+          <div className="ecs-heading-row">
             <div>
-              EARTH OBSERVATION
-              <small>
-                MULTI-TEMPORAL CHANGE ANALYSIS
-              </small>
+              <h2>
+                THE EARTH IS
+                <br />
+                <span>ALWAYS CHANGING.</span>
+              </h2>
             </div>
 
-          </div>
-
-
-          {comparisons.map(
-            (comparison) => (
-              <ComparisonCard
-                key={comparison.id}
-                comparison={comparison}
-              />
-            )
-          )}
-
-
-          {/* ANALYSIS DETAIL */}
-
-          <div className="ecs-analysis-panel">
-
-            <div className="ecs-analysis-mark">
-              ∿
-            </div>
-
-            <div className="ecs-analysis-content">
-
-              <span>
-                GEO NEXUS / TEMPORAL ENGINE
-              </span>
-
-              <h4>
-                FROM IMAGERY TO EVIDENCE.
-              </h4>
-
+            <div className="ecs-heading-copy">
+              <span>REAL IMAGE · REAL LOCATION</span>
               <p>
-                Comparing the same geographic
-                region across different acquisition
-                dates allows GeoNexus to identify
-                meaningful changes in land use,
-                infrastructure, vegetation and
-                built-up patterns.
+                See how Delhi's landscape evolves through
+                multi-temporal satellite observations.
               </p>
+            </div>
+          </div>
+        </header>
 
+        <div className="ecs-main">
+          <div className="ecs-left">
+            <div className="ecs-period-switcher">
+              {comparisons.map((comparison, index) => (
+                <button
+                  key={comparison.id}
+                  className={
+                    activeComparison === index ? "active" : ""
+                  }
+                  onClick={() => setActiveComparison(index)}
+                >
+                  <span>DELHI</span>
+                  {comparison.from} → {comparison.to}
+                </button>
+              ))}
             </div>
 
+            <ComparisonCard comparison={active} />
+          </div>
 
-            <div className="ecs-analysis-period">
+          <aside className="ecs-right">
+            <div className="ecs-right-label">WHAT THE IMAGES REVEAL</div>
 
-              <small>
-                COMPARISONS
-              </small>
+            <div className="ecs-right-line" />
 
-              <strong>
-                02
-              </strong>
-
+            <div className="ecs-right-number">
+              <strong>5</strong>
               <span>
-                TIME SERIES
+                visual
+                <br />
+                indicators
               </span>
-
             </div>
 
-          </div>
-
-        </div>
-
-
-        {/* =================================================
-            RIGHT — SECTION MESSAGE
-        ================================================= */}
-
-        <div className="ecs-right">
-
-          <div className="ecs-right-content">
-
-            <span className="ecs-kicker">
-              REAL IMAGE, REAL IMPACT.
-            </span>
-
-
-            <h2>
-
-              THE EARTH
-
-              <br />
-
-              IS ALWAYS
-
-              <br />
-
-              <em>
-                CHANGING.
-              </em>
-
-            </h2>
-
-
-            <div className="ecs-line" />
-
-
-            <p className="ecs-lead">
-
-              Satellite imagery turns
-              change into something
-              we can see, compare
-              and understand.
-
+            <p className="ecs-right-text">
+              Each comparison evaluates five visible landscape
+              indicators against the same Delhi baseline.
             </p>
 
-
-            <p className="ecs-text">
-
-              Earth is constantly evolving.
-              By comparing observations of
-              the same place across time,
-              GeoNexus helps reveal where
-              transformation occurs and
-              what those changes mean.
-
-            </p>
-
-
-            {/* DETAIL INFORMATION */}
-
-            <div className="ecs-detail-grid">
-
-              <div className="ecs-detail-item">
-
-                <span>
-                  01
-                </span>
-
-                <div>
-                  <strong>
-                    OBSERVE
-                  </strong>
-
-                  <small>
-                    Access real satellite
-                    observations.
-                  </small>
-                </div>
-
+            <div className="ecs-analysis-list">
+              <div>
+                <span>01</span>
+                <p>Infrastructure transformation</p>
               </div>
 
-
-              <div className="ecs-detail-item">
-
-                <span>
-                  02
-                </span>
-
-                <div>
-                  <strong>
-                    COMPARE
-                  </strong>
-
-                  <small>
-                    Examine the same
-                    location over time.
-                  </small>
-                </div>
-
+              <div>
+                <span>02</span>
+                <p>Road and transport pattern</p>
               </div>
 
-
-              <div className="ecs-detail-item">
-
-                <span>
-                  03
-                </span>
-
-                <div>
-                  <strong>
-                    DETECT
-                  </strong>
-
-                  <small>
-                    Identify meaningful
-                    spatial changes.
-                  </small>
-                </div>
-
+              <div>
+                <span>03</span>
+                <p>Urban / built-up structure</p>
               </div>
 
-
-              <div className="ecs-detail-item">
-
-                <span>
-                  04
-                </span>
-
-                <div>
-                  <strong>
-                    UNDERSTAND
-                  </strong>
-
-                  <small>
-                    Turn observations
-                    into intelligence.
-                  </small>
-                </div>
-
+              <div>
+                <span>04</span>
+                <p>Vegetation stability</p>
               </div>
 
+              <div>
+                <span>05</span>
+                <p>Water & floodplain variation</p>
+              </div>
             </div>
 
-          </div>
-
-
-          {/* RIGHT HUD */}
-
-          <div className="ecs-hud">
-
-            <span>
-              OBSERVE
-            </span>
-
-            <span>
-              COMPARE
-            </span>
-
-            <span>
-              DETECT
-            </span>
-
-            <span>
-              UNDERSTAND
-            </span>
-
-          </div>
-
+            <div className="ecs-data-note">
+              <span>DATA NOTE</span>
+              <p>
+                Scores represent visible change intensity from the
+                supplied imagery. They are not area percentages and
+                will be replaced by quantitative backend detection
+                when available.
+              </p>
+            </div>
+          </aside>
         </div>
 
+        <footer className="ecs-footer">
+          <div>
+            <span>OBSERVATION MODE</span>
+            <strong>MULTI-TEMPORAL</strong>
+          </div>
+
+          <div>
+            <span>LOCATION</span>
+            <strong>DELHI, INDIA</strong>
+          </div>
+
+          <div>
+            <span>BASELINE</span>
+            <strong>2021</strong>
+          </div>
+
+          <div className="ecs-footer-indicator">
+            <span />
+            VISUAL CHANGE ASSESSMENT
+          </div>
+        </footer>
       </div>
-
     </section>
   );
 }

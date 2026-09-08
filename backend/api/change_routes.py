@@ -5,7 +5,7 @@ import cv2
 import json
 
 from data.locations import LOCATIONS
-from services.db_service import query_change_records, query_consecutive_range
+from services.db_service import query_change_records, query_consecutive_range, get_dashboard_stats
 from services.preview_service import create_satellite_preview
 from services.change_detection_service import detect_changes, classify_change
 from services.geojson_service import mask_to_geojson
@@ -208,3 +208,11 @@ def detect_satellite_changes(
         "change_mask": f"/api/changes/mask?location={location_key}&before_year={before_year}&after_year={after_year}",
         "geojson_url": f"/api/changes/geojson?location={location_key}&before_year={before_year}&after_year={after_year}"
     }
+
+@router.get("/dashboard/stats")
+def get_dashboard_statistics(
+    city: str = Query(None),
+    year_from: int = Query(None),
+    year_to: int = Query(None)
+):
+    return get_dashboard_stats(city=city, year_from=year_from, year_to=year_to)

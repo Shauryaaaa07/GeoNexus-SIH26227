@@ -1,382 +1,353 @@
-import { useState } from "react";
+import { API_BASE_URL } from "../config";
+import { useMemo, useState, useEffect } from "react";
 import "./Section05.css";
+
 import section05Image from "../assets/geonexus-section05.png";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  "https://geonexus-backend1.onrender.com";
+import urbanImage from "../assets/01_urban_growth.png";
+import infrastructureImage from "../assets/02_infrastructure.png";
+import vegetationImage from "../assets/03_vegetation.png";
+import waterImage from "../assets/04_water.png";
+import landUseImage from "../assets/05_land_use_environment.png";
 
-const DEFAULT_RESULTS = [
+/*
+  Automatically reads images from src/assets.
+  This avoids Vite crashing if the yearly image filename
+  is slightly different.
+*/
+const assetFiles = import.meta.glob(
+  "../assets/*",
   {
-    title: "URBAN EXPANSION",
-    match: "96.4%",
-    period: "2021 → 2026",
-    type: "urban",
-    category: "New Buildings",
-    confidence: "High",
-    area: "+2.4 km²",
-    location: "Delhi",
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+function findYearImage(year) {
+  const entries = Object.entries(assetFiles);
+
+  const match = entries.find(([path]) => {
+    const filename = path.split("/").pop().toLowerCase();
+
+    return (
+      filename.includes(String(year)) &&
+      (
+        filename.includes("delhi") ||
+        filename.includes("satellite") ||
+        filename.includes("202")
+      )
+    );
+  });
+
+  return match ? match[1] : null;
+}
+
+const YEAR_IMAGES = {
+  2020: findYearImage(2020),
+  2021: findYearImage(2021),
+  2022: findYearImage(2022),
+  2023: findYearImage(2023),
+  2024: findYearImage(2024),
+  2025: findYearImage(2025),
+  2026: findYearImage(2026),
+};
+
+const YEARS = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
+
+const categories = [
+  {
+    title: "URBAN GROWTH",
+    image: urbanImage,
+    description: "Built-up areas and settlement expansion.",
   },
   {
-    title: "ROAD NETWORK CHANGE",
-    match: "92.8%",
-    period: "2021 → 2026",
-    type: "roads",
-    category: "New Roads",
-    confidence: "High",
-    area: "+12.6 km",
-    location: "Delhi",
+    title: "INFRASTRUCTURE",
+    image: infrastructureImage,
+    description: "Roads, corridors and development patterns.",
   },
   {
-    title: "VEGETATION CHANGE",
-    match: "89.6%",
-    period: "2021 → 2026",
-    type: "vegetation",
-    category: "Vegetation Change",
-    confidence: "Medium",
-    area: "-3.1 km²",
-    location: "Delhi",
+    title: "VEGETATION",
+    image: vegetationImage,
+    description: "Green cover and environmental patterns.",
+  },
+  {
+    title: "WATER",
+    image: waterImage,
+    description: "Rivers, lakes and surface-water patterns.",
+  },
+  {
+    title: "LAND USE",
+    image: landUseImage,
+    description: "Agricultural, urban and open-land patterns.",
   },
 ];
 
-const analysisSteps = [
-  {
-    number: "01",
-    title: "Query understood",
-    description: "Analyzing your request...",
-  },
-  {
-    number: "02",
-    title: "Searching satellite data",
-    description: "Scanning multi-temporal imagery...",
-  },
-  {
-    number: "03",
-    title: "Finding relevant results",
-    description: "Filtering and ranking matches...",
-  },
-  {
-    number: "04",
-    title: "Results ready",
-    description: "Showing the best matches.",
-  },
-];
+function getYears(text) {
+  const years = [
+    ...new Set(
+      (text.match(/20(?:20|21|22|23|24|25|26)/g) || []).map(Number)
+    ),
+  ];
 
-function SearchResult({
-  title,
-  match,
-  period,
-  type,
-  onClick,
-  selected,
-}) {
+  if (years.length >= 2) {
+    return {
+      start: Math.min(years[0], years[1]),
+      end: Math.max(years[0], years[1]),
+    };
+  }
+
+  return {
+    start: 2020,
+    end: 2023,
+  };
+}
+
+function CategoryCard({ item, active, onClick }) {
   return (
-    <article
-      className={`section05-result-card ${type} ${
-        selected ? "selected" : ""
-      }`}
+    <button
+      className={`section05-category ${active ? "active" : ""}`}
       onClick={onClick}
+      type="button"
     >
-      <div className="section05-result-image">
-        <span></span>
-      </div>
+      <img src={item.image} alt={item.title} />
 
-      <div className="section05-result-info">
-        <strong>{title}</strong>
+      <span className="section05-category-shade" />
 
-        <span className="section05-match">
-          {match} match
-        </span>
+      <span className="section05-category-number">
+        {item.title.slice(0, 2)}
+      </span>
 
-        <small>{period}</small>
-      </div>
+      <span className="section05-category-text">
+        <strong>{item.title}</strong>
+        <small>{item.description}</small>
+      </span>
 
-      <button
-        className="section05-result-arrow"
-        aria-label={`Open ${title}`}
-        onClick={(event) => {
-          event.stopPropagation();
-          onClick();
-        }}
-      >
+      <span className="section05-category-arrow">
         →
-      </button>
-    </article>
+      </span>
+    </button>
   );
 }
 
-function QueryAnalysis() {
+function QueryPanel({ start, end }) {
   return (
     <aside className="section05-query-panel">
-      <div className="section05-query-header">
+      <div className="section05-query-top">
         <span>INTELLIGENT SEARCH</span>
-        <i></i>
+        <i />
       </div>
 
-      <div className="section05-query-title">
+      <small className="section05-query-label">
         QUERY ANALYSIS
+      </small>
+
+      <div className="section05-query-period">
+        <span>SELECTED PERIOD</span>
+
+        <strong>
+          {start} → {end}
+        </strong>
       </div>
 
-      <div className="section05-analysis-list">
-        {analysisSteps.map((step, index) => (
+      {[
+        [
+          "01",
+          "Query understood",
+          "Location and requested years detected.",
+        ],
+        [
+          "02",
+          "Satellite data found",
+          `Delhi ${start} and ${end} imagery selected.`,
+        ],
+        [
+          "03",
+          "Temporal comparison",
+          "Before / after observations prepared.",
+        ],
+        [
+          "✓",
+          "Results ready",
+          "Change categories are available below.",
+        ],
+      ].map(([number, title, text], index) => (
+        <div
+          className="section05-query-step"
+          key={number}
+        >
           <div
-            className={`section05-analysis-step ${
-              index === analysisSteps.length - 1
-                ? "complete"
-                : ""
+            className={`section05-step-circle ${
+              index === 3 ? "done" : ""
             }`}
-            key={step.number}
           >
-            <div className="section05-step-icon">
-              {index === analysisSteps.length - 1
-                ? "✓"
-                : step.number}
-            </div>
-
-            <div className="section05-step-line"></div>
-
-            <div className="section05-step-content">
-              <strong>{step.title}</strong>
-              <span>{step.description}</span>
-            </div>
+            {number}
           </div>
-        ))}
-      </div>
+
+          {index < 3 && (
+            <div className="section05-step-connector" />
+          )}
+
+          <div>
+            <strong>{title}</strong>
+            <span>{text}</span>
+          </div>
+        </div>
+      ))}
     </aside>
   );
 }
 
-function ResultIntelligence({ result }) {
-  if (!result) return null;
-
-  return (
-    <div className="section05-intelligence">
-      <div className="section05-intelligence-header">
-        <div>
-          <span>RESULT INTELLIGENCE</span>
-          <h3>{result.title}</h3>
-        </div>
-
-        <div className="section05-result-score">
-          <small>RELEVANCE</small>
-          <strong>{result.match}</strong>
-        </div>
-      </div>
-
-      <div className="section05-intelligence-content">
-        <div className="section05-detail-image">
-          <div className="section05-detail-image-overlay">
-            <span>DETECTED AREA</span>
-            <strong>{result.area}</strong>
-          </div>
-
-          <div className="section05-detail-grid"></div>
-        </div>
-
-        <div className="section05-detail-info">
-          <div className="section05-detail-row">
-            <span>CATEGORY</span>
-            <strong>{result.category}</strong>
-          </div>
-
-          <div className="section05-detail-row">
-            <span>CONFIDENCE</span>
-            <strong className="confidence">
-              {result.confidence}
-            </strong>
-          </div>
-
-          <div className="section05-detail-row">
-            <span>AREA / CHANGE</span>
-            <strong>{result.area}</strong>
-          </div>
-
-          <div className="section05-detail-row">
-            <span>PERIOD</span>
-            <strong>{result.period}</strong>
-          </div>
-
-          <div className="section05-detail-row">
-            <span>LOCATION</span>
-            <strong>{result.location}</strong>
-          </div>
-        </div>
-      </div>
-
-      <div className="section05-detail-timeline">
-        <span>2021</span>
-
-        <div>
-          <i></i>
-          <b></b>
-        </div>
-
-        <span>2026</span>
-      </div>
-    </div>
-  );
-}
-
 export default function Section05() {
+  const [dashboardStats, setDashboardStats] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
+
+  // backend se stats le rahe hain
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/dashboard/stats`)
+      .then((res) => res.json())
+      .then((data) => setDashboardStats(data))
+      .catch((err) => console.log("Dashboard stats error:", err));
+  }, []);
   const [query, setQuery] = useState(
-    "Show urban expansion in Delhi between 2021 and 2026"
+    "Show the difference between Delhi 2020 and 2023"
   );
 
-  const [resultsList, setResultsList] =
-    useState(DEFAULT_RESULTS);
+  const [start, setStart] = useState(2020);
+  const [end, setEnd] = useState(2023);
 
-  const [loading, setLoading] = useState(false);
+  const [activeCategory, setActiveCategory] =
+    useState("URBAN GROWTH");
 
-  const [showAll, setShowAll] = useState(false);
+  const [uploadedImage, setUploadedImage] =
+    useState(null);
 
-  const [selectedResult, setSelectedResult] =
-    useState(DEFAULT_RESULTS[0]);
+  const selectedCategory = useMemo(
+    () =>
+      categories.find(
+        (item) => item.title === activeCategory
+      ) || categories[0],
+    [activeCategory]
+  );
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
+  function runSearch(value = query) {
+    const years = getYears(value);
 
-    setLoading(true);
+    setStart(years.start);
+    setEnd(years.end);
 
-    try {
-      const apiUrl =
-        `${API_BASE_URL}/api/search/semantic?query=${encodeURIComponent(
-          query
-        )}`;
+    setIsSearching(true);
+    // backend se semantic search result le rahe hain
+    fetch(`${API_BASE_URL}/api/search/semantic?query=${encodeURIComponent(value)}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSearchResults(data);
+        setIsSearching(false);
+      })
+      .catch((err) => {
+        console.log("Semantic search error:", err);
+        setIsSearching(false);
+      });
+  }
 
-      const res = await fetch(apiUrl);
+  function updatePeriod(newStart, newEnd) {
+    let safeStart = newStart;
+    let safeEnd = newEnd;
 
-      if (!res.ok) {
-        throw new Error(
-          `Semantic API returned ${res.status}`
-        );
-      }
-
-      const data = await res.json();
-
-      if (
-        data.status === "success" &&
-        data.results &&
-        data.results.length > 0
-      ) {
-        const mapped = data.results.map(
-          (item, idx) => {
-            const similarity =
-              typeof item.similarity_score === "number"
-                ? item.similarity_score
-                : 0;
-
-            return {
-              title: item.description
-                ? item.description.toUpperCase()
-                : `SATELLITE IMAGE ${item.year || ""}`,
-
-              match:
-                similarity > 0
-                  ? `${(similarity * 100).toFixed(1)}%`
-                  : "N/A",
-
-              period: item.year
-                ? `${item.year}`
-                : "2021 → 2026",
-
-              type:
-                idx % 3 === 0
-                  ? "urban"
-                  : idx % 3 === 1
-                  ? "roads"
-                  : "vegetation",
-
-              category:
-                item.description ||
-                "Satellite Image",
-
-              confidence:
-                similarity >= 0.7
-                  ? "High"
-                  : similarity >= 0.4
-                  ? "Medium"
-                  : "Low",
-
-              area:
-                item.location || "Delhi",
-
-              location:
-                item.location || "Delhi",
-            };
-          }
-        );
-
-        setResultsList(mapped);
-        setSelectedResult(mapped[0]);
-        setShowAll(true);
+    if (safeStart >= safeEnd) {
+      if (newStart < 2026) {
+        safeEnd = newStart + 1;
       } else {
-        console.warn(
-          "No semantic results received",
-          data
-        );
+        safeStart = newEnd - 1;
       }
-    } catch (error) {
-      console.warn(
-        "Semantic search fetch failed:",
-        error
-      );
-    } finally {
-      setLoading(false);
     }
-  };
+
+    safeStart = Math.max(2020, safeStart);
+    safeEnd = Math.min(2026, safeEnd);
+
+    setStart(safeStart);
+    setEnd(safeEnd);
+
+    setQuery(
+      `Show the difference between Delhi ${safeStart} and ${safeEnd}`
+    );
+  }
+
+  function handleUpload(event) {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const preview = URL.createObjectURL(file);
+
+    setUploadedImage({
+      name: file.name,
+      preview,
+    });
+  }
+
+  const beforeImage = YEAR_IMAGES[start];
+  const afterImage = YEAR_IMAGES[end];
 
   return (
-    <section className="section05">
-      {/* BACKGROUND */}
+    <section
+      className="section05"
+      id="search"
+      style={{
+        "--section05-bg": `url(${section05Image})`,
+      }}
+    >
+      <div className="section05-background" />
 
-      <div
-        className="section05-background"
-        style={{
-          backgroundImage: `url(${section05Image})`,
-        }}
-      ></div>
-
-      <div className="section05-overlay"></div>
+      <div className="section05-overlay" />
 
       {/* HEADER */}
 
       <header className="section05-header">
-        <div className="section05-section-label">
+        <div className="section05-label">
           <span>05</span>
-          <i></i>
-          <strong>SEMANTIC RETRIEVAL</strong>
+
+          <i />
+
+          <strong>
+            SEMANTIC RETRIEVAL
+          </strong>
         </div>
 
-        <div className="section05-powered">
-          POWERED BY AI
-          <i></i>
+        <div className="section05-status">
+          <span />
+          MULTI-TEMPORAL SEARCH
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
 
-      <div className="section05-content">
-        <div className="section05-left">
-          {/* INTRO */}
+      <div className="section05-layout">
 
-          <div className="section05-intro">
-            <h2>
+        <main className="section05-main">
+
+          {/* HEADING */}
+
+          <div className="section05-heading">
+            <h1>
               SEARCH EARTH.
               <br />
-              <span>FIND MEANING.</span>
-            </h2>
+              <em>FIND MEANING.</em>
+            </h1>
 
             <p>
-              Describe what you're looking for.
-              GeoNexus finds the right satellite
-              imagery, understands the context and
-              shows you the most relevant results.
+              Describe the change you want to explore.
+              GeoNexus finds the matching satellite
+              observations and compares the requested
+              time period.
             </p>
           </div>
 
           {/* SEARCH */}
 
-          <div className="section05-search">
+          <div className="section05-search-row">
+
             <div className="section05-search-icon">
               ⌕
             </div>
@@ -384,217 +355,314 @@ export default function Section05() {
             <input
               type="text"
               value={query}
-              onChange={(e) =>
-                setQuery(e.target.value)
+              onChange={(event) =>
+                setQuery(event.target.value)
               }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  runSearch();
                 }
               }}
-              placeholder="Describe your search query..."
-              aria-label="Semantic satellite search"
+              placeholder="Example: Show the difference between Delhi 2020 and 2023"
             />
 
             <button
-              aria-label="Search"
-              onClick={handleSearch}
-              disabled={loading}
+              type="button"
+              onClick={() => runSearch()}
             >
-              {loading ? "..." : "→"}
+              →
+            </button>
+
+          </div>
+
+          {/* NATURAL LANGUAGE GUIDE */}
+
+          <div className="section05-natural-language">
+            <span className="section05-natural-label">
+              NATURAL LANGUAGE
+            </span>
+
+            <span className="section05-natural-text">
+              Describe what you want in your own words:
+            </span>
+
+            <button
+              type="button"
+              onClick={() => {
+                const text =
+                  "Show urban growth in Delhi between 2020 and 2023";
+                setQuery(text);
+                runSearch(text);
+              }}
+            >
+              “Show urban growth in Delhi between 2020 and 2023”
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                const text =
+                  "Compare vegetation change from 2021 to 2026";
+                setQuery(text);
+                runSearch(text);
+              }}
+            >
+              “Compare vegetation change from 2021 to 2026”
             </button>
           </div>
 
-          {/* FILTERS */}
+          {/* CONTROLS */}
 
-          <div className="section05-filters">
-            {/* LOCATION */}
+          <div className="section05-controls">
 
-            <label className="section05-filter">
-              <select defaultValue="Delhi">
-                <option value="Delhi">
-                  Delhi
-                </option>
-              </select>
-            </label>
-
-            {/* TIME */}
-
-            <label className="section05-filter">
-              <select defaultValue="2021-2026">
-                <option value="2020-2021">
-                  2020 – 2021
-                </option>
-
-                <option value="2021-2022">
-                  2021 – 2022
-                </option>
-
-                <option value="2022-2023">
-                  2022 – 2023
-                </option>
-
-                <option value="2023-2024">
-                  2023 – 2024
-                </option>
-
-                <option value="2024-2025">
-                  2024 – 2025
-                </option>
-
-                <option value="2025-2026">
-                  2025 – 2026
-                </option>
-
-                <option value="2021-2026">
-                  2021 – 2026
-                </option>
-              </select>
-            </label>
-
-            {/* FEATURE */}
-
-            <label className="section05-filter">
-              <select defaultValue="Urban Growth">
-                <option value="Urban Growth">
-                  Urban Growth
-                </option>
-
-                <option value="Road Network">
-                  Road Network
-                </option>
-
-                <option value="Vegetation">
-                  Vegetation
-                </option>
-
-                <option value="Water Body">
-                  Water Body
-                </option>
-
-                <option value="Agricultural / Land Use">
-                  Agricultural / Land Use
-                </option>
-              </select>
-            </label>
-
-            {/* CHANGE TYPE */}
-
-            <label className="section05-filter">
-              <select defaultValue="Change Detection">
-                <option value="Change Detection">
-                  Change Detection
-                </option>
-
-                <option value="New Buildings">
-                  New Buildings
-                </option>
-
-                <option value="New Roads">
-                  New Roads
-                </option>
-
-                <option value="Vegetation Change">
-                  Vegetation Change
-                </option>
-
-                <option value="Water Body Change">
-                  Water Body Change
-                </option>
-
-                <option value="Land-Use Change">
-                  Land-Use Change
-                </option>
-              </select>
-            </label>
-          </div>
-
-          {/* METRICS */}
-
-          <div className="section05-metrics">
-            <div>
-              <strong>96.4%</strong>
-              <span>ACCURACY</span>
-            </div>
-
-            <div>
-              <strong>3M+</strong>
-              <span>SATELLITE IMAGES</span>
-            </div>
-
-            <div>
-              <strong>AI</strong>
-              <span>POWERED SEARCH</span>
-            </div>
-
-            <div>
-              <strong>DELHI</strong>
-              <span>FOCUS AREA</span>
-            </div>
-          </div>
-
-          {/* TOP MATCHES */}
-
-          <div className="section05-results-header">
-            <h3>Top Matches</h3>
-
-            <button
-              onClick={() =>
-                setShowAll(!showAll)
+            <select
+              value={start}
+              onChange={(event) =>
+                updatePeriod(
+                  Number(event.target.value),
+                  end
+                )
               }
             >
-              {showAll
-                ? "HIDE DETAILS"
-                : "VIEW ALL"}
-              <span>→</span>
-            </button>
-          </div>
+              {YEARS.slice(0, -1).map((year) => (
+                <option
+                  key={year}
+                  value={year}
+                >
+                  BEFORE: {year}
+                </option>
+              ))}
+            </select>
 
-          <div className="section05-results">
-            {resultsList.map(
-              (result, index) => (
-                <SearchResult
-                  key={`${result.title}-${index}`}
-                  {...result}
-                  selected={
-                    selectedResult &&
-                    selectedResult.title ===
-                      result.title
-                  }
-                  onClick={() => {
-                    setSelectedResult(result);
-                    setShowAll(true);
-                  }}
-                />
-              )
+            <select
+              value={end}
+              onChange={(event) =>
+                updatePeriod(
+                  start,
+                  Number(event.target.value)
+                )
+              }
+            >
+              {YEARS.slice(1).map((year) => (
+                <option
+                  key={year}
+                  value={year}
+                >
+                  AFTER: {year}
+                </option>
+              ))}
+            </select>
+
+            <label className="section05-upload">
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleUpload}
+              />
+
+              <span>＋</span>
+
+              UPLOAD IMAGE
+
+            </label>
+
+            {uploadedImage && (
+              <button
+                type="button"
+                className="section05-upload-name"
+                onClick={() =>
+                  setUploadedImage(null)
+                }
+              >
+                {uploadedImage.name.slice(0, 18)} ×
+              </button>
             )}
+
           </div>
 
-          {/* RESULT INTELLIGENCE */}
+          {/* REAL DATABASE STATS */}
 
-          {showAll && selectedResult && (
-            <ResultIntelligence
-              result={selectedResult}
-            />
+          <div className="section05-stats">
+
+            <div>
+              <strong>{dashboardStats ? dashboardStats.total_polygons.toLocaleString() : "9,411"}</strong>
+              <span>TOTAL POLYGONS</span>
+            </div>
+
+            <div>
+              <strong>{dashboardStats ? `${dashboardStats.total_area_km2} km²` : "392.31 km²"}</strong>
+              <span>TOTAL CHANGED AREA</span>
+            </div>
+
+            <div>
+              <strong>{end - start}</strong>
+              <span>YEARS DIFFERENCE</span>
+            </div>
+
+            <div>
+              <strong>{dashboardStats ? dashboardStats.categories.length : "6"}</strong>
+              <span>ACTIVE CATEGORIES</span>
+            </div>
+
+          </div>
+
+          {/* RESULTS */}
+
+          <div className="section05-results-title">
+
+            <h2>
+              CHANGE CATEGORIES
+            </h2>
+
+            <span>
+              DELHI / {start} → {end}
+            </span>
+
+          </div>
+
+          {/* CATEGORY IMAGES */}
+
+          <div className="section05-categories">
+
+            {categories.map((item) => (
+              <CategoryCard
+                key={item.title}
+                item={item}
+                active={
+                  activeCategory === item.title
+                }
+                onClick={() =>
+                  setActiveCategory(item.title)
+                }
+              />
+            ))}
+
+          </div>
+
+          {/* BEFORE / AFTER RESULT */}
+
+          <div className="section05-result">
+
+            <div className="section05-result-head">
+
+              <div>
+                <small>
+                  RESULT INTELLIGENCE
+                </small>
+
+                <h3>
+                  {selectedCategory.title}
+                </h3>
+              </div>
+
+              <strong>
+                {start} → {end}
+              </strong>
+
+            </div>
+
+            <div className="section05-images">
+
+              <div>
+                <span>
+                  BEFORE / {start}
+                </span>
+
+                {beforeImage ? (
+                  <img
+                    src={beforeImage}
+                    alt={`Delhi satellite imagery ${start}`}
+                  />
+                ) : (
+                  <div className="section05-image-missing">
+                    IMAGE NOT FOUND
+                    <small>
+                      Add the {start} Delhi image
+                      to src/assets
+                    </small>
+                  </div>
+                )}
+              </div>
+
+              <b>→</b>
+
+              <div>
+                <span>
+                  AFTER / {end}
+                </span>
+
+                {afterImage ? (
+                  <img
+                    src={afterImage}
+                    alt={`Delhi satellite imagery ${end}`}
+                  />
+                ) : (
+                  <div className="section05-image-missing">
+                    IMAGE NOT FOUND
+                    <small>
+                      Add the {end} Delhi image
+                      to src/assets
+                    </small>
+                  </div>
+                )}
+              </div>
+
+            </div>
+
+            <p>
+              {selectedCategory.description}
+              {" "}
+              Compare the visible satellite
+              observations between {start} and {end}.
+            </p>
+
+          </div>
+
+          {/* UPLOADED IMAGE */}
+
+          {uploadedImage && (
+            <div className="section05-upload-result">
+
+              <span>
+                UPLOADED IMAGE
+              </span>
+
+              <img
+                src={uploadedImage.preview}
+                alt="Uploaded analysis"
+              />
+
+            </div>
           )}
-        </div>
 
-        {/* RIGHT PANEL */}
+        </main>
 
-        <QueryAnalysis />
+        {/* QUERY PANEL */}
+
+        <QueryPanel
+          start={start}
+          end={end}
+        />
+
       </div>
 
       {/* FOOTER */}
 
       <footer className="section05-footer">
-        <strong>GEONEXUS</strong>
 
-        <div></div>
+        <strong>
+          GEONEXUS
+        </strong>
+
+        <i />
 
         <span>
           FROM DATA TO A CLEARER TOMORROW.
         </span>
+
       </footer>
+
     </section>
   );
 }

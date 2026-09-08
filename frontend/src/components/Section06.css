@@ -1,1337 +1,656 @@
 /* =========================================================
    GEONEXUS — SECTION 06
-   FINAL CLOSING SECTION
+   FINAL / CLEAR LAYOUT
    ========================================================= */
 
 .section06 {
   position: relative;
-  min-height: 100vh;
-  width: 100%;
+  height: 100vh;
+  min-height: 700px;
   overflow: hidden;
-
-  background: #020509;
-  color: #ffffff;
-
   isolation: isolate;
+  background: #02070a;
+  color: #f4fbfd;
 }
-
-
-/* =========================================================
-   BACKGROUND
-   ========================================================= */
 
 .section06-background {
   position: absolute;
   inset: 0;
-
-  background-image: var(--section06-bg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
   z-index: -4;
-
-  transform: scale(1.02);
+  background-image: var(--section06-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-
-
-/* =========================================================
-   CINEMATIC OVERLAY
-   ========================================================= */
 
 .section06-overlay {
   position: absolute;
   inset: 0;
-
+  z-index: -3;
   background:
     linear-gradient(
       90deg,
-      rgba(2, 5, 9, 0.92) 0%,
-      rgba(2, 5, 9, 0.72) 38%,
-      rgba(2, 5, 9, 0.35) 70%,
-      rgba(2, 5, 9, 0.68) 100%
+      rgba(1, 7, 10, 0.93) 0%,
+      rgba(1, 8, 11, 0.78) 34%,
+      rgba(1, 8, 11, 0.38) 65%,
+      rgba(1, 6, 9, 0.68) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(1, 6, 9, 0.25),
+      rgba(1, 6, 9, 0.72)
     );
-
-  z-index: -3;
 }
-
-
-/* =========================================================
-   HUD GRID
-   ========================================================= */
 
 .section06-grid {
   position: absolute;
   inset: 0;
-
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(
-      rgba(0, 217, 255, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0, 217, 255, 0.035) 1px,
-      transparent 1px
-    );
-
-  background-size: 70px 70px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      transparent,
-      black 18%,
-      black 80%,
-      transparent
-    );
-
   z-index: -2;
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgba(104, 217, 231, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(104, 217, 231, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  pointer-events: none;
 }
 
+.section06::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  z-index: 30;
+  border: 1px solid rgba(91, 205, 223, 0.22);
+  pointer-events: none;
+}
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* ================= HEADER ================= */
 
 .section06-header {
   position: relative;
-
-  width: 100%;
-
-  padding: 30px 5vw 0;
-
+  z-index: 10;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-
-  z-index: 5;
+  width: min(1780px, 100%);
+  margin: 0 auto;
+  padding: 22px 34px 0;
 }
-
-
-/* BRAND */
 
 .section06-brand {
   display: flex;
   align-items: center;
-
-  gap: 20px;
+  gap: 18px;
 }
 
-
-.section06-logo {
-  font-size: 20px;
-  font-weight: 800;
-
-  letter-spacing: 0.22em;
-
-  color: #ffffff;
-
-  white-space: nowrap;
+.section06-logo,
+.section06-footer-logo {
+  color: #eefbfd;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 4px;
 }
 
-
-.section06-logo span {
-  color: #00d9ff;
+.section06-logo span,
+.section06-footer-logo span {
+  color: #46d9ec;
 }
-
 
 .section06-brand-divider {
   width: 1px;
-  height: 32px;
-
-  background: rgba(255, 255, 255, 0.22);
+  height: 27px;
+  background: rgba(110, 204, 217, 0.35);
 }
-
 
 .section06-tagline {
-  font-size: 8px;
-  line-height: 1.65;
-
-  letter-spacing: 0.22em;
-
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(188, 220, 225, 0.62);
+  font-size: 7px;
+  line-height: 1.55;
+  letter-spacing: 1.7px;
 }
-
-
-/* NAV */
 
 .section06-nav {
   display: flex;
   align-items: center;
-
   gap: 12px;
-
-  font-size: 8px;
-
-  letter-spacing: 0.2em;
-
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(190, 222, 227, 0.6);
+  font-size: 7px;
+  letter-spacing: 2px;
 }
-
 
 .section06-nav i {
+  color: rgba(94, 205, 221, 0.35);
   font-style: normal;
-
-  color: rgba(0, 217, 255, 0.4);
 }
 
-
-/* =========================================================
-   MAIN CONTENT
-   ========================================================= */
+/* ================= CONTENT ================= */
 
 .section06-content {
   position: relative;
-
-  min-height: calc(100vh - 115px);
-
-  padding: 8vh 5vw 150px;
-
-  z-index: 2;
+  z-index: 5;
+  width: min(1780px, 100%);
+  height: calc(100vh - 100px);
+  min-height: 590px;
+  margin: 0 auto;
+  padding: 42px 34px 88px;
 }
-
-
-/* =========================================================
-   SECTION LABEL
-   ========================================================= */
 
 .section06-section-label {
   display: flex;
   align-items: center;
-
   gap: 14px;
-
-  margin-bottom: 35px;
 }
-
 
 .section06-section-label span {
+  color: rgba(238, 248, 250, 0.82);
   font-size: 10px;
-
-  color: #00d9ff;
-
-  letter-spacing: 0.15em;
+  letter-spacing: 4px;
 }
-
 
 .section06-section-label div {
   width: 50px;
   height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #00d9ff,
-      rgba(0, 217, 255, 0)
-    );
+  background: rgba(88, 211, 227, 0.6);
 }
-
 
 .section06-section-label strong {
-  font-size: 9px;
-
-  font-weight: 500;
-
-  letter-spacing: 0.25em;
-
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(112, 213, 227, 0.8);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
 }
 
-
-/* =========================================================
-   MAIN AREA
-   ========================================================= */
+/* ================= MAIN HERO ================= */
 
 .section06-main {
   display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    220px;
-
-  gap: 50px;
-
-  max-width: 1250px;
-
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) 135px;
+  align-items: center;
+  gap: 40px;
+  margin-top: 34px;
 }
-
-
-/* =========================================================
-   MAIN COPY
-   ========================================================= */
 
 .section06-copy {
-  max-width: 920px;
+  max-width: 900px;
 }
-
 
 .section06-copy h1 {
   margin: 0;
-
-  font-size: clamp(48px, 5vw, 76px);
-
-  line-height: 0.92;
-
-  font-weight: 500;
-
-  letter-spacing: -0.045em;
-
-  text-transform: uppercase;
-
-  color: #ffffff;
+  color: rgba(244, 250, 251, 0.96);
+  font-size: clamp(50px, 5.25vw, 82px);
+  line-height: 0.94;
+  font-weight: 300;
+  letter-spacing: -3.5px;
+  text-shadow: 0 5px 35px rgba(0, 0, 0, 0.3);
 }
-
 
 .section06-copy h1 em {
+  color: #48dced;
   font-style: normal;
-
-  color: #00d9ff;
-
-  text-shadow:
-    0 0 18px rgba(0, 217, 255, 0.22);
 }
 
-
-/* =========================================================
-   DESCRIPTION
-   ========================================================= */
-
-.section06-description {
-  max-width: 520px;
-
-  margin-top: 28px;
-
-  font-size: 13px;
-
-  line-height: 1.8;
-
-  letter-spacing: 0.03em;
-
-  color: rgba(255, 255, 255, 0.62);
+.section06-copy .section06-description {
+  max-width: 610px;
+  margin: 20px 0 0;
+  color: rgba(207, 229, 233, 0.76);
+  font-size: 12px;
+  line-height: 1.55;
 }
-
-
-/* =========================================================
-   THANK YOU
-   ========================================================= */
 
 .section06-thanks {
-  margin-top: 18px;
-
+  margin: 9px 0 0;
+  color: rgba(185, 217, 222, 0.52);
   font-size: 9px;
-
-  letter-spacing: 0.17em;
-
-  text-transform: uppercase;
-
-  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.4px;
 }
-
-
-/* =========================================================
-   STATEMENT
-   ========================================================= */
 
 .section06-statement {
   display: flex;
   align-items: center;
-
-  gap: 12px;
-
-  margin-top: 28px;
+  gap: 11px;
+  margin-top: 17px;
 }
-
 
 .section06-statement span {
-  display: block;
-
-  width: 38px;
+  width: 34px;
   height: 1px;
-
-  background: #00d9ff;
-
-  box-shadow:
-    0 0 8px rgba(0, 217, 255, 0.65);
+  background: #45d9ec;
+  box-shadow: 0 0 10px rgba(69, 217, 236, 0.55);
 }
-
 
 .section06-statement strong {
-  font-size: 8px;
-
-  font-weight: 500;
-
-  letter-spacing: 0.22em;
-
-  color: rgba(255, 255, 255, 0.48);
+  color: rgba(218, 240, 243, 0.76);
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
 }
 
-
-/* =========================================================
-   RIGHT HUD
-   ========================================================= */
+/* ================= RIGHT HUD ================= */
 
 .section06-hud {
   display: flex;
-
   flex-direction: column;
-
-  gap: 16px;
-
-  padding-top: 20px;
-
-  font-size: 8px;
-
-  letter-spacing: 0.25em;
-
-  color: rgba(255, 255, 255, 0.4);
+  gap: 17px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(83, 202, 219, 0.28);
 }
-
 
 .section06-hud-line {
-  width: 100%;
+  width: 43px;
   height: 1px;
-
-  margin-bottom: 4px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #00d9ff,
-      rgba(0, 217, 255, 0)
-    );
+  margin-bottom: 2px;
+  background: #43d9ec;
+  box-shadow: 0 0 12px rgba(67, 217, 236, 0.5);
 }
-
 
 .section06-hud span {
-  position: relative;
-
-  padding-left: 16px;
+  color: rgba(194, 224, 228, 0.58);
+  font-size: 7px;
+  letter-spacing: 2px;
 }
 
-
-.section06-hud span::before {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  top: 50%;
-
-  width: 5px;
-  height: 5px;
-
-  transform: translateY(-50%);
-
-  border: 1px solid rgba(0, 217, 255, 0.65);
-
-  border-radius: 50%;
+.section06-hud span:last-child {
+  color: #48dced;
 }
 
-
-/* =========================================================
-   FEATURES
-   ========================================================= */
+/* ================= FEATURE STRIP ================= */
 
 .section06-features {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 70px;
   display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  max-width: 1050px;
-
-  margin-top: 70px;
-
-  border-top:
-    1px solid rgba(255, 255, 255, 0.12);
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.12);
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(105, 203, 216, 0.22);
+  border-bottom: 1px solid rgba(105, 203, 216, 0.13);
 }
-
 
 .section06-feature {
-  min-height: 82px;
-
   display: flex;
   align-items: center;
-
-  gap: 15px;
-
-  padding: 18px 22px;
-
-  border-right:
-    1px solid rgba(255, 255, 255, 0.1);
-
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease;
+  gap: 13px;
+  min-height: 62px;
+  padding: 9px 22px;
+  border-right: 1px solid rgba(105, 203, 216, 0.15);
 }
-
 
 .section06-feature:first-child {
-  padding-left: 0;
+  padding-left: 10px;
 }
-
 
 .section06-feature:last-child {
-  border-right: none;
+  border-right: 0;
 }
-
-
-.section06-feature:hover {
-  background:
-    rgba(0, 217, 255, 0.045);
-
-  border-color:
-    rgba(0, 217, 255, 0.25);
-}
-
-
-/* ICON */
 
 .section06-feature-icon {
-  width: 34px;
-  height: 34px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border:
-    1px solid rgba(0, 217, 255, 0.32);
-
-  color: #00d9ff;
-
-  font-size: 15px;
-
-  background:
-    rgba(0, 217, 255, 0.025);
-
-  box-shadow:
-    inset 0 0 14px rgba(0, 217, 255, 0.04);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(68, 216, 234, 0.45);
+  color: #4bdff1;
+  font-size: 13px;
+  background: rgba(2, 18, 23, 0.45);
 }
-
-
-/* FEATURE TEXT */
 
 .section06-feature-text {
   display: flex;
-
   flex-direction: column;
-
-  gap: 4px;
+  gap: 3px;
 }
 
-
-.section06-feature-text span:first-child {
-  font-size: 8px;
-
-  letter-spacing: 0.2em;
-
-  color: #ffffff;
+.section06-feature-text span {
+  color: rgba(225, 242, 244, 0.82);
+  font-size: 7px;
+  letter-spacing: 2px;
 }
-
 
 .section06-feature-text span:last-child {
-  font-size: 8px;
-
-  letter-spacing: 0.2em;
-
-  color: #00d9ff;
+  color: rgba(104, 205, 219, 0.6);
 }
 
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* ================= FOOTER ================= */
 
 .section06-footer {
   position: absolute;
-
-  left: 5vw;
-  right: 5vw;
-  bottom: 25px;
-
+  z-index: 10;
+  left: 34px;
+  right: 34px;
+  bottom: 17px;
   display: grid;
-
-  grid-template-columns:
-    1fr auto 1fr;
-
-  align-items: end;
-
-  gap: 30px;
-
-  z-index: 6;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 22px;
 }
-
-
-/* FOOTER LEFT */
 
 .section06-footer-left {
   display: flex;
-
-  flex-direction: column;
-
-  gap: 8px;
+  align-items: center;
+  gap: 17px;
 }
-
 
 .section06-footer-logo {
-  font-size: 12px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.2em;
+  font-size: 8px;
+  letter-spacing: 3px;
 }
-
-
-.section06-footer-logo span {
-  color: #00d9ff;
-}
-
 
 .section06-copyright {
-  font-size: 7px;
-
-  letter-spacing: 0.12em;
-
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(165, 204, 211, 0.43);
+  font-size: 6px;
+  letter-spacing: 1px;
 }
-
-
-/* =========================================================
-   FOOTER LINKS
-   ========================================================= */
 
 .section06-footer-links {
   display: flex;
-
   align-items: center;
-  justify-content: center;
-
   gap: 10px;
 }
 
-
 .section06-footer-link {
-  border: none;
-
-  background: transparent;
-
-  padding: 0;
-
+  color: rgba(191, 224, 229, 0.58);
+  font-size: 7px;
+  letter-spacing: 1.7px;
   cursor: pointer;
-
-  font-family: inherit;
-
-  font-size: 8px;
-
-  letter-spacing: 0.18em;
-
-  color: rgba(255, 255, 255, 0.48);
-
-  transition:
-    color 0.25s ease,
-    text-shadow 0.25s ease;
+  transition: color 0.2s ease;
 }
-
 
 .section06-footer-link:hover {
-  color: #00d9ff;
-
-  text-shadow:
-    0 0 10px rgba(0, 217, 255, 0.45);
+  color: #4bdff1;
 }
-
 
 .section06-footer-links i {
-  font-size: 8px;
-
+  color: rgba(90, 193, 209, 0.25);
+  font-size: 7px;
   font-style: normal;
-
-  color: rgba(0, 217, 255, 0.3);
 }
-
-
-/* =========================================================
-   FOOTER DIVIDER
-   ========================================================= */
 
 .section06-footer-divider {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-
-  bottom: -13px;
-
-  height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0, 217, 255, 0.35),
-      rgba(255, 255, 255, 0.1),
-      rgba(0, 217, 255, 0.35)
-    );
+  display: none;
 }
-
-
-/* =========================================================
-   FOOTER MESSAGE
-   ========================================================= */
 
 .section06-footer-message {
   justify-self: end;
-
+  color: rgba(181, 217, 222, 0.45);
+  font-size: 6px;
+  line-height: 1.45;
+  letter-spacing: 2px;
   text-align: right;
-
-  font-size: 8px;
-
-  line-height: 1.4;
-
-  letter-spacing: 0.2em;
-
-  color: rgba(255, 255, 255, 0.38);
 }
 
-
-/* =========================================================
-   INFORMATION MODAL
-   ========================================================= */
+/* ================= INFORMATION POPUP ================= */
 
 .section06-info-overlay {
   position: fixed;
-
   inset: 0;
-
-  z-index: 1000;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
+  z-index: 100;
+  display: grid;
+  place-items: center;
   padding: 30px;
-
-  background:
-    rgba(0, 3, 7, 0.78);
-
-  backdrop-filter: blur(10px);
-
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 5, 8, 0.78);
+  backdrop-filter: blur(8px);
 }
-
 
 .section06-info-panel {
   position: relative;
-
   width: min(720px, 100%);
-
-  max-height: 85vh;
-
-  overflow-y: auto;
-
-  padding: 42px;
-
-  border:
-    1px solid rgba(0, 217, 255, 0.32);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(5, 14, 22, 0.98),
-      rgba(2, 6, 11, 0.98)
-    );
-
+  max-height: 82vh;
+  overflow: auto;
+  padding: 38px 40px 28px;
+  border: 1px solid rgba(70, 215, 235, 0.4);
+  background: linear-gradient(
+    145deg,
+    rgba(3, 22, 27, 0.98),
+    rgba(1, 9, 13, 0.99)
+  );
   box-shadow:
-    0 0 40px rgba(0, 217, 255, 0.1),
-    inset 0 0 40px rgba(0, 217, 255, 0.025);
-
-  animation:
-    section06PanelIn 0.3s ease;
+    0 25px 90px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(41, 191, 211, 0.08);
 }
-
-
-@keyframes section06PanelIn {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(18px)
-      scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-
-/* =========================================================
-   MODAL CLOSE BUTTON
-   ========================================================= */
 
 .section06-info-close {
   position: absolute;
-
-  top: 18px;
-  right: 20px;
-
-  width: 34px;
-  height: 34px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.15);
-
-  background:
-    rgba(255, 255, 255, 0.025);
-
-  color: rgba(255, 255, 255, 0.65);
-
-  font-size: 22px;
-
+  top: 13px;
+  right: 17px;
+  border: 0;
+  background: transparent;
+  color: rgba(218, 244, 247, 0.72);
+  font-size: 28px;
   line-height: 1;
-
   cursor: pointer;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
 }
-
-
-.section06-info-close:hover {
-  color: #00d9ff;
-
-  border-color:
-    rgba(0, 217, 255, 0.45);
-
-  background:
-    rgba(0, 217, 255, 0.06);
-}
-
-
-/* =========================================================
-   MODAL LABEL
-   ========================================================= */
 
 .section06-info-label {
+  color: rgba(85, 211, 228, 0.72);
   font-size: 8px;
-
-  letter-spacing: 0.25em;
-
-  color: #00d9ff;
+  letter-spacing: 3px;
 }
-
 
 .section06-info-line {
-  width: 100%;
-
+  width: 55px;
   height: 1px;
-
-  margin:
-    16px 0 25px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0, 217, 255, 0.65),
-      rgba(0, 217, 255, 0)
-    );
+  margin: 17px 0 22px;
+  background: #45d9ec;
 }
-
-
-/* =========================================================
-   MODAL TITLE
-   ========================================================= */
 
 .section06-info-panel h2 {
   margin: 0;
-
-  max-width: 600px;
-
-  font-size: clamp(28px, 4vw, 48px);
-
-  line-height: 0.98;
-
-  font-weight: 500;
-
-  letter-spacing: -0.035em;
-
-  color: #ffffff;
+  color: #eefafd;
+  font-size: 31px;
+  font-weight: 300;
+  letter-spacing: -1px;
 }
-
-
-/* =========================================================
-   MODAL DESCRIPTION
-   ========================================================= */
 
 .section06-info-description {
-  max-width: 600px;
-
-  margin-top: 20px;
-
-  font-size: 13px;
-
-  line-height: 1.8;
-
-  color: rgba(255, 255, 255, 0.58);
+  margin: 15px 0 24px;
+  color: rgba(204, 229, 233, 0.72);
+  font-size: 12px;
+  line-height: 1.7;
 }
-
-
-/* =========================================================
-   MODAL HEADING
-   ========================================================= */
 
 .section06-info-heading {
-  margin-top: 32px;
-
-  padding-bottom: 10px;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.1);
-
-  font-size: 8px;
-
-  letter-spacing: 0.22em;
-
-  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 10px;
+  color: rgba(101, 211, 226, 0.65);
+  font-size: 7px;
+  letter-spacing: 2.5px;
 }
-
-
-/* =========================================================
-   MODAL POINTS
-   ========================================================= */
 
 .section06-info-points {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 0;
-
-  margin-top: 5px;
+  border-top: 1px solid rgba(100, 200, 214, 0.13);
 }
-
 
 .section06-info-point {
   display: grid;
-
-  grid-template-columns: 40px 1fr;
-
-  gap: 15px;
-
+  grid-template-columns: 35px 1fr;
+  gap: 10px;
   align-items: center;
-
-  min-height: 50px;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.07);
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(100, 200, 214, 0.11);
 }
-
 
 .section06-info-point > span {
-  font-size: 8px;
-
-  letter-spacing: 0.15em;
-
-  color: #00d9ff;
+  color: #48dced;
+  font-size: 7px;
+  letter-spacing: 1px;
 }
-
 
 .section06-info-point p {
   margin: 0;
-
-  font-size: 11px;
-
-  line-height: 1.5;
-
-  letter-spacing: 0.04em;
-
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(220, 240, 243, 0.78);
+  font-size: 10px;
 }
-
-
-/* =========================================================
-   CONTACT DETAILS
-   ========================================================= */
 
 .section06-contact-details {
   display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin-top: 25px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
 }
 
-
-.section06-contact-details > div {
+.section06-contact-details div {
   display: flex;
-
   flex-direction: column;
-
-  gap: 8px;
-
-  padding: 15px;
-
-  border:
-    1px solid rgba(0, 217, 255, 0.14);
-
-  background:
-    rgba(0, 217, 255, 0.025);
+  gap: 6px;
+  padding: 11px;
+  border: 1px solid rgba(76, 198, 215, 0.15);
+  background: rgba(4, 23, 28, 0.5);
 }
-
 
 .section06-contact-details span {
-  font-size: 7px;
-
-  letter-spacing: 0.2em;
-
-  color: #00d9ff;
+  color: rgba(137, 199, 208, 0.5);
+  font-size: 6px;
+  letter-spacing: 1.5px;
 }
-
 
 .section06-contact-details strong {
-  font-size: 9px;
-
-  line-height: 1.5;
-
-  letter-spacing: 0.05em;
-
-  font-weight: 500;
-
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(225, 243, 245, 0.8);
+  font-size: 8px;
+  font-weight: 400;
 }
-
-
-/* =========================================================
-   MODAL FOOTER
-   ========================================================= */
 
 .section06-info-footer {
   display: flex;
-
-  align-items: center;
-
   justify-content: space-between;
-
-  gap: 20px;
-
-  margin-top: 30px;
-
-  padding-top: 18px;
-
-  border-top:
-    1px solid rgba(255, 255, 255, 0.08);
-
-  font-size: 7px;
-
-  letter-spacing: 0.18em;
-
-  color: rgba(255, 255, 255, 0.28);
+  gap: 15px;
+  margin-top: 22px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(100, 200, 214, 0.12);
+  color: rgba(146, 200, 208, 0.45);
+  font-size: 6px;
+  letter-spacing: 1.5px;
 }
 
+/* ================= RESPONSIVE ================= */
 
-.section06-info-footer span:first-child {
-  color: rgba(0, 217, 255, 0.55);
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .section06-header {
-    padding:
-      25px 5vw 0;
+@media (max-width: 1100px) {
+  .section06-header,
+  .section06-content {
+    padding-left: 28px;
+    padding-right: 28px;
   }
 
+  .section06-main {
+    grid-template-columns: minmax(0, 1fr) 105px;
+    gap: 25px;
+  }
+
+  .section06-features {
+    left: 28px;
+    right: 28px;
+  }
+
+  .section06-footer {
+    left: 28px;
+    right: 28px;
+  }
 
   .section06-nav {
     display: none;
   }
+}
 
-
-  .section06-content {
-    padding:
-      7vh 5vw 150px;
+@media (max-width: 760px) {
+  .section06 {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
 
+  .section06-header {
+    padding-top: 70px;
+  }
+
+  .section06-content {
+    height: auto;
+    min-height: 0;
+    padding-top: 42px;
+    padding-bottom: 30px;
+  }
 
   .section06-main {
     grid-template-columns: 1fr;
+    margin-top: 28px;
   }
-
 
   .section06-hud {
     display: none;
   }
 
-
   .section06-features {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    margin-top: 55px;
-  }
-
-
-  .section06-feature:nth-child(2) {
-    border-right: none;
-  }
-
-
-  .section06-feature:nth-child(1),
-  .section06-feature:nth-child(2) {
-    border-bottom:
-      1px solid rgba(255, 255, 255, 0.1);
-  }
-
-
-  .section06-feature:first-child {
-    padding-left: 22px;
-  }
-
-
-  .section06-footer {
-    grid-template-columns:
-      1fr auto;
-
-    align-items: center;
-  }
-
-
-  .section06-footer-links {
-    grid-column: 1 / -1;
-
-    grid-row: 2;
-
-    justify-content: flex-start;
-  }
-
-
-  .section06-footer-message {
-    grid-column: 2;
-
-    grid-row: 1;
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-  .section06 {
-    min-height: 100svh;
-  }
-
-
-  .section06-header {
-    padding:
-      22px 6vw 0;
-  }
-
-
-  .section06-brand {
-    gap: 12px;
-  }
-
-
-  .section06-logo {
-    font-size: 16px;
-  }
-
-
-  .section06-brand-divider {
-    height: 25px;
-  }
-
-
-  .section06-tagline {
-    display: none;
-  }
-
-
-  .section06-content {
-    padding:
-      7vh 6vw 190px;
-  }
-
-
-  .section06-section-label {
-    margin-bottom: 25px;
-
-    gap: 10px;
-  }
-
-
-  .section06-section-label strong {
-    font-size: 7px;
-  }
-
-
-  .section06-copy h1 {
-    font-size:
-      clamp(39px, 11vw, 58px);
-
-    line-height: 0.94;
-  }
-
-
-  .section06-description {
-    font-size: 11px;
-
-    line-height: 1.7;
-
-    margin-top: 22px;
-  }
-
-
-  .section06-thanks {
-    font-size: 7px;
-
-    line-height: 1.5;
-  }
-
-
-  .section06-statement {
-    margin-top: 22px;
-  }
-
-
-  .section06-statement strong {
-    font-size: 7px;
-
-    line-height: 1.5;
-  }
-
-
-  .section06-features {
-    grid-template-columns: 1fr;
-
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    grid-template-columns: 1fr 1fr;
     margin-top: 45px;
   }
 
-
-  .section06-feature,
-  .section06-feature:first-child {
-    min-height: 65px;
-
-    padding: 14px 0;
-
-    border-right: none;
-
-    border-bottom:
-      1px solid rgba(255, 255, 255, 0.08);
+  .section06-feature {
+    border-bottom: 1px solid rgba(105, 203, 216, 0.15);
   }
-
-
-  .section06-feature:last-child {
-    border-bottom: none;
-  }
-
 
   .section06-footer {
-    left: 6vw;
-    right: 6vw;
-
-    bottom: 22px;
-
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
     grid-template-columns: 1fr;
-
-    gap: 15px;
+    margin: 0 28px 28px;
   }
-
 
   .section06-footer-message {
-    display: none;
+    justify-self: start;
+    text-align: left;
   }
-
-
-  .section06-footer-links {
-    grid-column: auto;
-
-    grid-row: auto;
-
-    justify-content: flex-start;
-
-    flex-wrap: wrap;
-  }
-
-
-  .section06-footer-divider {
-    bottom: -10px;
-  }
-
-
-  /* MODAL */
-
-  .section06-info-overlay {
-    padding: 18px;
-  }
-
 
   .section06-info-panel {
-    padding: 30px 22px;
-
-    max-height: 90vh;
+    padding: 32px 24px 22px;
   }
-
-
-  .section06-info-panel h2 {
-    font-size: 31px;
-  }
-
-
-  .section06-info-description {
-    font-size: 11px;
-  }
-
 
   .section06-contact-details {
     grid-template-columns: 1fr;
   }
-
-
-  .section06-info-footer {
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 8px;
-  }
 }
 
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .section06-info-panel {
-    animation: none;
+@media (max-width: 520px) {
+  .section06-header,
+  .section06-content {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
+  .section06::before {
+    inset: 8px;
+  }
+
+  .section06-copy h1 {
+    font-size: 43px;
+    letter-spacing: -2px;
+  }
+
+  .section06-features {
+    grid-template-columns: 1fr;
+  }
+
+  .section06-feature,
+  .section06-feature:first-child {
+    padding-left: 0;
+    border-right: 0;
+  }
+
+  .section06-footer {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .section06-footer-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .section06-footer-links {
+    flex-wrap: wrap;
+  }
 }
