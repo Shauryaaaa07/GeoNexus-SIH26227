@@ -1,0 +1,1843 @@
+/* =====================================================
+   GEONEXUS — SECTION 02
+   THE EARTH IS ALWAYS CHANGING
+===================================================== */
+
+
+.earth-changes-section {
+
+  --cyan: #00d9ff;
+
+  --mouse-x: 78%;
+  --mouse-y: 50%;
+
+  position: relative;
+
+  min-height: 100vh;
+
+  padding:
+    72px 4.5%
+    85px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  color: #ffffff;
+
+  /*
+    IMPORTANT:
+    This background is intentionally close
+    to the Hero atmosphere so the transition
+    does not feel like a new page.
+  */
+
+  background:
+    radial-gradient(
+      circle at var(--mouse-x) var(--mouse-y),
+      rgba(0, 190, 255, 0.045),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      #020509 0%,
+      #02070b 45%,
+      #02080d 100%
+    );
+
+}
+
+
+/* =====================================================
+   SOFT ATMOSPHERIC LIGHT
+===================================================== */
+
+.earth-changes-section::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -5;
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+      ellipse at 88% 38%,
+      rgba(0, 160, 210, 0.065),
+      transparent 36%
+    ),
+
+    radial-gradient(
+      ellipse at 15% 75%,
+      rgba(0, 80, 120, 0.045),
+      transparent 42%
+    );
+
+}
+
+
+/* =====================================================
+   VERY SUBTLE GRID
+===================================================== */
+
+.earth-changes-section::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -4;
+
+  pointer-events: none;
+
+  opacity: 0.055;
+
+  background-image:
+
+    linear-gradient(
+      rgba(0, 217, 255, 0.4) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(0, 217, 255, 0.4) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    70px 70px;
+
+}
+
+
+/* =====================================================
+   DATA GLOW
+===================================================== */
+
+.ecs-data-glow {
+
+  position: absolute;
+
+  width: 620px;
+  height: 620px;
+
+  right: -260px;
+  top: 18%;
+
+  z-index: -3;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 217, 255, 0.06),
+      rgba(0, 217, 255, 0.018) 35%,
+      transparent 70%
+    );
+
+  filter:
+    blur(4px);
+
+}
+
+
+/* =====================================================
+   CONTOUR DATA LINES
+===================================================== */
+
+.ecs-contours {
+
+  position: absolute;
+
+  z-index: -2;
+
+  top: -3%;
+  right: -8%;
+
+  width: 55%;
+  height: 108%;
+
+  pointer-events: none;
+
+  opacity: 0.58;
+
+  transform:
+    translate(
+      calc((var(--mouse-x) - 78%) * 0.08),
+      calc((var(--mouse-y) - 50%) * 0.06)
+    );
+
+  transition:
+    transform 1.4s
+    cubic-bezier(.22,.61,.36,1);
+
+}
+
+
+.ecs-contours span {
+
+  position: absolute;
+
+  width: 560px;
+  height: 560px;
+
+  border:
+    1px solid
+    rgba(0, 217, 255, 0.085);
+
+  border-radius: 50%;
+
+  transform:
+    rotate(-22deg)
+    scaleX(1.55);
+
+  animation:
+    contourFloat 13s
+    ease-in-out
+    infinite;
+
+}
+
+
+.ecs-contours span:nth-child(1) {
+  right: -120px;
+  top: 4%;
+}
+
+
+.ecs-contours span:nth-child(2) {
+  right: -85px;
+  top: 9%;
+  animation-delay: -1.2s;
+}
+
+
+.ecs-contours span:nth-child(3) {
+  right: -50px;
+  top: 14%;
+  animation-delay: -2.4s;
+}
+
+
+.ecs-contours span:nth-child(4) {
+  right: -15px;
+  top: 19%;
+  animation-delay: -3.6s;
+}
+
+
+.ecs-contours span:nth-child(5) {
+  right: 20px;
+  top: 24%;
+  animation-delay: -4.8s;
+}
+
+
+.ecs-contours span:nth-child(6) {
+  right: 55px;
+  top: 29%;
+  animation-delay: -6s;
+}
+
+
+.ecs-contours span:nth-child(7) {
+  right: 90px;
+  top: 34%;
+  animation-delay: -7.2s;
+}
+
+
+@keyframes contourFloat {
+
+  0%,
+  100% {
+
+    opacity: 0.28;
+
+    transform:
+      rotate(-22deg)
+      scaleX(1.55)
+      translate(0, 0);
+
+  }
+
+  50% {
+
+    opacity: 0.58;
+
+    transform:
+      rotate(-22deg)
+      scaleX(1.55)
+      translate(6px, -4px);
+
+  }
+
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.ecs-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    1.16fr
+    0.84fr;
+
+  min-height:
+    calc(100vh - 155px);
+
+}
+
+
+/* =====================================================
+   LEFT COLUMN
+===================================================== */
+
+.ecs-left {
+
+  min-width: 0;
+
+  padding:
+    22px 32px
+    35px 0;
+
+  padding-right: 34px;
+
+  border-right:
+    1px solid
+    rgba(0, 217, 255, 0.10);
+
+}
+
+
+/* =====================================================
+   SECTION LABEL
+===================================================== */
+
+.ecs-section-label {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 24px;
+
+}
+
+
+.ecs-section-label > span {
+
+  color:
+    rgba(0, 217, 255, 0.62);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.ecs-section-label > div {
+
+  color:
+    var(--cyan);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+}
+
+
+.ecs-section-label small {
+
+  display: block;
+
+  margin-top: 5px;
+
+  color:
+    #536c77;
+
+  font-size: 6px;
+
+  font-weight: 400;
+
+  letter-spacing: 1.2px;
+
+}
+
+
+/* =====================================================
+   COMPARISON CARD
+===================================================== */
+
+.ecs-card {
+
+  margin-bottom: 16px;
+
+  padding:
+    17px;
+
+  border:
+    1px solid
+    rgba(0, 217, 255, 0.15);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(5, 16, 23, 0.72),
+      rgba(2, 8, 13, 0.62)
+    );
+
+  box-shadow:
+    inset 0 0 35px
+    rgba(0, 217, 255, 0.012);
+
+  transition:
+    border-color .35s ease,
+    transform .35s ease,
+    background .35s ease;
+
+}
+
+
+.ecs-card:hover {
+
+  border-color:
+    rgba(0, 217, 255, 0.30);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(5, 18, 26, 0.80),
+      rgba(2, 9, 14, 0.68)
+    );
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+/* =====================================================
+   CARD HEADER
+===================================================== */
+
+.ecs-card-header {
+
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    flex-start;
+
+  gap: 15px;
+
+  margin-bottom: 12px;
+
+}
+
+
+.ecs-location-title {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+
+.ecs-live-dot {
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background:
+    var(--cyan);
+
+  box-shadow:
+    0 0 7px
+    rgba(0, 217, 255, 0.8);
+
+}
+
+
+.ecs-card-header h3 {
+
+  margin: 0;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 13px;
+
+  letter-spacing: 1.2px;
+
+}
+
+
+.ecs-coordinates {
+
+  display: block;
+
+  margin-top: 5px;
+
+  color:
+    #617984;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 6px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.ecs-theme {
+
+  text-align:
+    right;
+
+}
+
+
+.ecs-theme span {
+
+  display: block;
+
+  margin-bottom: 4px;
+
+  color:
+    #526c77;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 5px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.ecs-theme strong {
+
+  color:
+    var(--cyan);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 6px;
+
+  letter-spacing: 1.2px;
+
+}
+
+
+/* =====================================================
+   COMPARISON GRID
+===================================================== */
+
+.ecs-comparison {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    24px
+    minmax(0, 1fr)
+    165px;
+
+  gap: 10px;
+
+}
+
+
+/* =====================================================
+   SATELLITE IMAGE
+===================================================== */
+
+.ecs-image {
+
+  position: relative;
+
+  min-height: 145px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(0, 217, 255, 0.16);
+
+  background:
+    #15241f;
+
+  isolation: isolate;
+
+}
+
+
+.ecs-image img {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  z-index: 0;
+
+  filter:
+    saturate(.94)
+    contrast(1.02);
+
+  transition:
+    transform .65s ease,
+    filter .45s ease;
+
+}
+
+
+.ecs-card:hover
+.ecs-image img {
+
+  transform:
+    scale(1.025);
+
+  filter:
+    saturate(1.02)
+    contrast(1.04);
+
+}
+
+
+/* =====================================================
+   IMAGE OVERLAY
+===================================================== */
+
+.ecs-image-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05),
+      transparent 50%,
+      rgba(0, 0, 0, 0.28)
+    );
+
+}
+
+
+/* =====================================================
+   IMAGE SOURCE
+===================================================== */
+
+.ecs-image-source {
+
+  position: absolute;
+
+  top: 6px;
+  right: 7px;
+
+  z-index: 4;
+
+  padding:
+    3px 5px;
+
+  background:
+    rgba(0, 4, 8, 0.62);
+
+  color:
+    rgba(220, 245, 250, 0.72);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 4.5px;
+
+  letter-spacing: .7px;
+
+}
+
+
+/* =====================================================
+   SATELLITE STATUS
+===================================================== */
+
+.ecs-image-status {
+
+  position: absolute;
+
+  left: 7px;
+  top: 7px;
+
+  z-index: 4;
+
+  color:
+    rgba(190, 239, 247, 0.58);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 4.5px;
+
+  letter-spacing: .7px;
+
+}
+
+
+/* =====================================================
+   YEAR LABEL
+===================================================== */
+
+.ecs-year {
+
+  position: absolute;
+
+  left: 8px;
+  bottom: 7px;
+
+  z-index: 4;
+
+  padding:
+    5px 8px;
+
+  background:
+    rgba(0, 5, 9, 0.82);
+
+  border:
+    1px solid
+    rgba(0, 217, 255, 0.23);
+
+  color:
+    #ffffff;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: .6px;
+
+}
+
+
+/* =====================================================
+   CHANGE DIVIDER
+===================================================== */
+
+.ecs-divider {
+
+  position: relative;
+
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+}
+
+
+.ecs-divider::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 1px;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(0, 217, 255, .65) 15%,
+      rgba(0, 217, 255, .65) 85%,
+      transparent
+    );
+
+}
+
+
+.ecs-divider span {
+
+  position: relative;
+
+  z-index: 2;
+
+  padding:
+    5px 2px;
+
+  background:
+    #06121a;
+
+  color:
+    rgba(0, 217, 255, .82);
+
+  writing-mode:
+    vertical-rl;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 5px;
+
+  letter-spacing: 1px;
+
+}
+
+
+/* =====================================================
+   METRICS
+===================================================== */
+
+.ecs-metrics {
+
+  display: flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    space-between;
+
+}
+
+
+.ecs-metrics-header {
+
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  padding-bottom:
+    6px;
+
+  border-bottom:
+    1px solid
+    rgba(0, 217, 255, .12);
+
+}
+
+
+.ecs-metrics-header span {
+
+  color:
+    #607b86;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 5px;
+
+  letter-spacing: .8px;
+
+}
+
+
+.ecs-metrics-header b {
+
+  color:
+    var(--cyan);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 5px;
+
+  font-weight: 500;
+
+}
+
+
+.ecs-metric {
+
+  display: flex;
+
+  align-items:
+    center;
+
+  gap: 7px;
+
+  min-height: 24px;
+
+  border-bottom:
+    1px solid
+    rgba(0, 217, 255, .055);
+
+}
+
+
+.ecs-metric:last-child {
+
+  border-bottom:
+    0;
+
+}
+
+
+.ecs-icon {
+
+  width: 20px;
+
+  color:
+    #9ceefa;
+
+  font-size: 13px;
+
+  text-align:
+    center;
+
+}
+
+
+.ecs-metric-info b {
+
+  display: block;
+
+  color:
+    #e9fbff;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 10px;
+
+}
+
+
+.ecs-metric-info b.negative {
+
+  color:
+    #ff7d85;
+
+}
+
+
+.ecs-metric-info b.neutral {
+
+  color:
+    #b8cbd1;
+
+}
+
+
+.ecs-metric-info small {
+
+  display: block;
+
+  margin-top: 2px;
+
+  color:
+    #718992;
+
+  font-size: 7px;
+
+}
+
+
+/* =====================================================
+   ANALYSIS DETAIL PANEL
+===================================================== */
+
+.ecs-analysis-panel {
+
+  display: grid;
+
+  grid-template-columns:
+    34px
+    1fr
+    85px;
+
+  align-items:
+    center;
+
+  gap: 13px;
+
+  margin-top: 17px;
+
+  padding:
+    15px 17px;
+
+  border:
+    1px solid
+    rgba(0, 217, 255, .12);
+
+  background:
+    rgba(2, 12, 18, .42);
+
+}
+
+
+.ecs-analysis-mark {
+
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width: 32px;
+  height: 32px;
+
+  border:
+    1px solid
+    rgba(0, 217, 255, .18);
+
+  color:
+    var(--cyan);
+
+  font-size: 20px;
+
+}
+
+
+.ecs-analysis-content > span {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+    #56717c;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 5px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.ecs-analysis-content h4 {
+
+  margin:
+    0 0 5px;
+
+  color:
+    #e9fbff;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+}
+
+
+.ecs-analysis-content p {
+
+  margin: 0;
+
+  color:
+    #788f99;
+
+  font-size: 9px;
+
+  line-height: 1.5;
+
+}
+
+
+.ecs-analysis-period {
+
+  padding-left:
+    12px;
+
+  border-left:
+    1px solid
+    rgba(0, 217, 255, .10);
+
+}
+
+
+.ecs-analysis-period small {
+
+  display: block;
+
+  color:
+    #58727c;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 5px;
+
+  letter-spacing: .8px;
+
+}
+
+
+.ecs-analysis-period strong {
+
+  display: block;
+
+  margin:
+    4px 0;
+
+  color:
+    #e9fbff;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 19px;
+
+}
+
+
+.ecs-analysis-period span {
+
+  color:
+    var(--cyan);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 4.5px;
+
+  letter-spacing: .7px;
+
+}
+
+
+/* =====================================================
+   RIGHT SIDE
+===================================================== */
+
+.ecs-right {
+
+  position: relative;
+
+  display: flex;
+
+  align-items:
+    center;
+
+  padding:
+    55px 0 55px 65px;
+
+  overflow: hidden;
+
+}
+
+
+.ecs-right-content {
+
+  position: relative;
+
+  z-index: 3;
+
+  max-width:
+    500px;
+
+}
+
+
+.ecs-kicker {
+
+  display: block;
+
+  margin-bottom:
+    23px;
+
+  color:
+    var(--cyan);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+}
+
+
+.ecs-right h2 {
+
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:
+    clamp(
+      48px,
+      4.4vw,
+      72px
+    );
+
+  line-height:
+    .95;
+
+  letter-spacing:
+    -3px;
+
+}
+
+
+.ecs-right h2 em {
+
+  color:
+    var(--cyan);
+
+  font-style:
+    normal;
+
+  text-shadow:
+    0 0 24px
+    rgba(0, 217, 255, .14);
+
+}
+
+
+.ecs-line {
+
+  width: 38px;
+
+  height: 1px;
+
+  margin:
+    25px 0;
+
+  background:
+    var(--cyan);
+
+  box-shadow:
+    0 0 12px
+    rgba(0, 217, 255, .35);
+
+}
+
+
+.ecs-lead {
+
+  max-width:
+    420px;
+
+  margin:
+    0 0 15px;
+
+  color:
+    #c6d5da;
+
+  font-size:
+    15px;
+
+  line-height:
+    1.5;
+
+}
+
+
+.ecs-text {
+
+  max-width:
+    450px;
+
+  margin:
+    0 0 27px;
+
+  color:
+    #7f959f;
+
+  font-size:
+    11px;
+
+  line-height:
+    1.8;
+
+}
+
+
+/* =====================================================
+   DETAIL GRID
+===================================================== */
+
+.ecs-detail-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:
+    9px;
+
+  max-width:
+    455px;
+
+}
+
+
+.ecs-detail-item {
+
+  display: flex;
+
+  gap: 9px;
+
+  padding:
+    10px 11px;
+
+  border:
+    1px solid
+    rgba(0, 217, 255, .09);
+
+  background:
+    rgba(3, 15, 21, .30);
+
+  transition:
+    border-color .3s ease,
+    background .3s ease;
+
+}
+
+
+.ecs-detail-item:hover {
+
+  border-color:
+    rgba(0, 217, 255, .22);
+
+  background:
+    rgba(0, 217, 255, .025);
+
+}
+
+
+.ecs-detail-item > span {
+
+  color:
+    rgba(0, 217, 255, .65);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 6px;
+
+  padding-top: 2px;
+
+}
+
+
+.ecs-detail-item strong {
+
+  display: block;
+
+  margin-bottom: 3px;
+
+  color:
+    #dff9ff;
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 6px;
+
+  letter-spacing:
+    1px;
+
+}
+
+
+.ecs-detail-item small {
+
+  display: block;
+
+  color:
+    #6f8791;
+
+  font-size: 7px;
+
+  line-height:
+    1.4;
+
+}
+
+
+/* =====================================================
+   RIGHT HUD
+===================================================== */
+
+.ecs-hud {
+
+  position: absolute;
+
+  right: 16px;
+
+  top: 50%;
+
+  display: flex;
+
+  flex-direction:
+    column;
+
+  gap: 9px;
+
+  transform:
+    translateY(-50%);
+
+  color:
+    rgba(144, 232, 255, .52);
+
+  font-family:
+    "Orbitron",
+    sans-serif;
+
+  font-size: 5px;
+
+  letter-spacing:
+    1.2px;
+
+}
+
+
+.ecs-hud::before {
+
+  content: "";
+
+  width: 18px;
+
+  height: 1px;
+
+  margin-bottom: 4px;
+
+  background:
+    var(--cyan);
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+  .ecs-content {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .ecs-left {
+
+    padding-right:
+      0;
+
+    border-right:
+      0;
+
+    border-bottom:
+      1px solid
+      rgba(0, 217, 255, .10);
+
+    padding-bottom:
+      45px;
+
+  }
+
+
+  .ecs-right {
+
+    min-height:
+      650px;
+
+    padding:
+      70px 0 50px;
+
+  }
+
+
+  .ecs-contours {
+
+    width:
+      90%;
+
+    opacity:
+      .35;
+
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 720px) {
+
+  .earth-changes-section {
+
+    padding:
+      45px 4% 60px;
+
+  }
+
+
+  .ecs-left {
+
+    padding:
+      10px 0 35px;
+
+  }
+
+
+  .ecs-card {
+
+    padding:
+      13px;
+
+  }
+
+
+  .ecs-card-header {
+
+    flex-direction:
+      column;
+
+    gap:
+      8px;
+
+  }
+
+
+  .ecs-theme {
+
+    text-align:
+      left;
+
+  }
+
+
+  .ecs-comparison {
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      18px
+      minmax(0, 1fr);
+
+  }
+
+
+  .ecs-metrics {
+
+    grid-column:
+      1 / -1;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr
+      1fr;
+
+    gap:
+      0 12px;
+
+    margin-top:
+      10px;
+
+  }
+
+
+  .ecs-analysis-panel {
+
+    grid-template-columns:
+      30px
+      1fr;
+
+  }
+
+
+  .ecs-analysis-period {
+
+    grid-column:
+      2;
+
+    padding:
+      10px 0 0;
+
+    border-left:
+      0;
+
+    border-top:
+      1px solid
+      rgba(0, 217, 255, .10);
+
+  }
+
+
+  .ecs-right {
+
+    min-height:
+      600px;
+
+    padding:
+      60px 0 30px;
+
+  }
+
+
+  .ecs-right h2 {
+
+    font-size:
+      clamp(
+        42px,
+        13vw,
+        62px
+      );
+
+    letter-spacing:
+      -2px;
+
+  }
+
+
+  .ecs-detail-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .ecs-hud {
+
+    display:
+      none;
+
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .ecs-section-label > div {
+
+    font-size:
+      8px;
+
+  }
+
+
+  .ecs-image {
+
+    min-height:
+      120px;
+
+  }
+
+
+  .ecs-image-source {
+
+    font-size:
+      3.8px;
+
+  }
+
+
+  .ecs-image-status {
+
+    display:
+      none;
+
+  }
+
+
+  .ecs-metrics {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .ecs-analysis-content p {
+
+    font-size:
+      8px;
+
+  }
+
+
+  .ecs-right {
+
+    min-height:
+      620px;
+
+  }
+
+
+  .ecs-kicker {
+
+    font-size:
+      7px;
+
+  }
+
+
+  .ecs-lead {
+
+    font-size:
+      13px;
+
+  }
+
+
+  .ecs-text {
+
+    font-size:
+      10px;
+
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ecs-contours span {
+
+    animation:
+      none;
+
+  }
+
+
+  .ecs-contours {
+
+    transition:
+      none;
+
+  }
+
+
+  .ecs-image img {
+
+    transition:
+      none;
+
+  }
+
+
+  .ecs-card {
+
+    transition:
+      none;
+
+  }
+
+
+  .ecs-detail-item {
+
+    transition:
+      none;
+
+  }
+
+}

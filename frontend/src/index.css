@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: #020509;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ============================= */
+/* GEONEXUS CUSTOM SCROLLBAR     */
+/* ============================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020509;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #00d9ff,
+    #008cff
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(0, 217, 255, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #5eeeff,
+    #00aaff
+  );
+  box-shadow:
+    0 0 8px rgba(0, 217, 255, 0.8),
+    0 0 18px rgba(0, 140, 255, 0.45);
+}
+
+/* Firefox */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #00bfff #020509;
+}

@@ -1,0 +1,23 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual env and cache
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Node modules and build output
+node_modules/
+dist/
+
+# Raw Sentinel-2 data packages
+*.SAFE/
+*.zip
+*.jp2
+
+# System files
+.DS_Store
+Thumbs.db
