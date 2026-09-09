@@ -996,7 +996,9 @@ function App() {
         </div>
         <div className="nav-right">
           <div className="status"><span className="status-dot"></span>SYSTEM ONLINE</div>
-          <button className="explore-btn">EXPLORE <span>→</span></button>
+          <a href="#analytics" className="explore-btn">
+  EXPLORE <span>→</span>
+</a>
         </div>
       </nav>
 
@@ -1005,9 +1007,9 @@ function App() {
           <div className="platform-label">───────── GEONEXUS PLATFORM V1.0</div>
           <h1>Turning Earth’s<br />Changes into<br /><span>Intelligence.</span></h1>
           <p className="hero-description">Semantic retrieval and multi-temporal analysis of satellite imagery to detect, understand and monitor changes that matter.</p>
-          <div className="hero-buttons">
-            <button className="primary-btn">EXPLORE DASHBOARD →</button>
-            <button className="secondary-btn">LEARN MORE</button>
+                        <div className="hero-buttons">
+            <a href="#analytics" className="primary-btn">EXPLORE DASHBOARD →</a>
+            <a href="#about" className="secondary-btn">LEARN MORE</a>
           </div>
         </div>
         <div className="hero-visual">
