@@ -6,6 +6,7 @@ import {
   GeoJSON,
   ImageOverlay,
   LayersControl,
+  Circle,
   useMap
 } from "react-leaflet";
 
@@ -52,15 +53,46 @@ function formatArea(areaM2) {
   return `${Math.round(areaM2).toLocaleString()} m²`;
 }
 
-function Map() {
+function MapRecenterToBounds({ features, placeInfo }) {
+  const map = useMap();
+  useEffect(() => {
+    if (placeInfo && placeInfo.search_mode === "point_radius" && placeInfo.latitude && placeInfo.longitude) {
+      map.setView([placeInfo.latitude, placeInfo.longitude], 13);
+    } else if (features && features.length > 0 && placeInfo && placeInfo.query !== "Entire Delhi" && placeInfo.query !== "Delhi") {
+      let minLat = 90, maxLat = -90, minLon = 180, maxLon = -180;
+      let validCount = 0;
+      features.slice(0, 300).forEach((f) => {
+        const lat = f.properties?.latitude;
+        const lon = f.properties?.longitude;
+        if (lat && lon) {
+          minLat = Math.min(minLat, lat);
+          maxLat = Math.max(maxLat, lat);
+          minLon = Math.min(minLon, lon);
+          maxLon = Math.max(maxLon, lon);
+          validCount++;
+        }
+      });
+      if (validCount > 0 && maxLat > minLat && maxLon > minLon) {
+        map.fitBounds([[minLat, minLon], [maxLat, maxLon]], { padding: [25, 25], maxZoom: 14 });
+      }
+    }
+  }, [features, placeInfo, map]);
+  return null;
+}
+
+function Map({ activeSearch, onStatsUpdate, showControls = true, height = "100%" }) {
   const [city, setCity] = useState("Delhi");
-  const [startYear, setStartYear] = useState(2021);
-  const [endYear, setEndYear] = useState(2022);
+  const [startYear, setStartYear] = useState(activeSearch?.yearFrom || 2020);
+  const [endYear, setEndYear] = useState(activeSearch?.yearTo || 2026);
 
   const [polygons, setPolygons] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
   const [isPending, setIsPending] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const targetPlace = activeSearch?.place || "Entire Delhi";
+  const targetCategory = activeSearch?.category || "All";
+  const activeCategoryFilter = activeSearch?.categoryFilter || "All";
 
   const [visibleCategories, setVisibleCategories] = useState({
     "New Buildings": true,
@@ -71,26 +103,23 @@ function Map() {
     "Unclassified": true
   });
 
+  useEffect(() => {
+    if (activeSearch?.yearFrom) setStartYear(activeSearch.yearFrom);
+    if (activeSearch?.yearTo) setEndYear(activeSearch.yearTo);
+  }, [activeSearch?.yearFrom, activeSearch?.yearTo]);
+
   const currentCityConfig = CITIES[city] || CITIES.Delhi;
 
   const handleStartYearChange = (newStart) => {
     const val = parseInt(newStart, 10);
-
     setStartYear(val);
-
-    if (val >= endYear) {
-      setEndYear(Math.min(val + 1, 2026));
-    }
+    if (val >= endYear) setEndYear(Math.min(val + 1, 2026));
   };
 
   const handleEndYearChange = (newEnd) => {
     const val = parseInt(newEnd, 10);
-
     setEndYear(val);
-
-    if (val <= startYear) {
-      setStartYear(Math.max(val - 1, 2020));
-    }
+    if (val <= startYear) setStartYear(Math.max(val - 1, 2020));
   };
 
   const toggleCategory = (category) => {
@@ -100,137 +129,47 @@ function Map() {
     }));
   };
 
-  const beforeImage =
-    `${API_BASE_URL}/api/satellite/rasters/delhi/${startYear}`;
-
-  const afterImage =
-    `${API_BASE_URL}/api/satellite/rasters/delhi/${endYear}`;
+  const beforeImage = `${API_BASE_URL}/api/satellite/rasters/delhi/${startYear}`;
+  const afterImage = `${API_BASE_URL}/api/satellite/rasters/delhi/${endYear}`;
 
   useEffect(() => {
-    const cityKey = city.toLowerCase();
-
     setLoading(true);
     setStatusMessage("");
     setIsPending(false);
 
-    const apiUrl =
-      `${API_BASE_URL}/api/changes/range?city=${encodeURIComponent(
-        city
-      )}&start=${startYear}&end=${endYear}`;
+    let apiUrl = "";
+    if (targetPlace && targetPlace !== "Entire Delhi" && targetPlace !== "Delhi") {
+      let catParam = targetCategory !== "All" ? `&category=${encodeURIComponent(targetCategory)}` : "";
+      apiUrl = `${API_BASE_URL}/api/changes/search?place=${encodeURIComponent(targetPlace)}&year_from=${startYear}&year_to=${endYear}${catParam}`;
+    } else {
+      apiUrl = `${API_BASE_URL}/api/changes/range?city=${encodeURIComponent(city)}&start=${startYear}&end=${endYear}`;
+    }
 
     fetch(apiUrl)
       .then((res) => {
-        if (!res.ok) {
-          throw new Error("API error");
-        }
-
+        if (!res.ok) throw new Error("API error");
         return res.json();
       })
-
       .then((data) => {
-        if (
-          data.status === "PENDING" ||
-          !data.features ||
-          data.features.length === 0
-        ) {
+        if (data.status === "PENDING" || !data.features || data.features.length === 0) {
           setPolygons(null);
           setIsPending(true);
-
-          setStatusMessage(
-            `Satellite analysis for ${city} (${startYear} → ${endYear}) is not available yet.`
-          );
+          setStatusMessage(`Satellite analysis for ${targetPlace} (${startYear} → ${endYear}) returned no features.`);
         } else {
           setPolygons(data);
           setIsPending(false);
-
-          if (data.status === "partial") {
-            setStatusMessage(
-              `Some years in ${startYear} → ${endYear} range for ${city} are pending.`
-            );
-          } else {
-            setStatusMessage("");
-          }
+          setStatusMessage("");
         }
       })
-
       .catch(() => {
-        const consecutivePairs = [];
-
-        for (let y = startYear; y < endYear; y++) {
-          consecutivePairs.push([y, y + 1]);
-        }
-
-        const fetchPromises = consecutivePairs.map(([yFrom, yTo]) => {
-          const staticPath =
-            `/data/${cityKey}/${yFrom}_${yTo}.geojson`;
-
-          const finalPath =
-            `/data/${cityKey}/${yFrom}_${yTo}_final.geojson`;
-
-          return fetch(staticPath)
-            .then((r) => {
-              if (r.ok) {
-                return r.json();
-              }
-
-              return fetch(finalPath).then((r2) => {
-                if (r2.ok) {
-                  return r2.json();
-                }
-
-                return null;
-              });
-            })
-            .catch(() => null);
-        });
-
-        Promise.all(fetchPromises)
-          .then((results) => {
-            const validCollections = results.filter(
-              (res) =>
-                res &&
-                res.features &&
-                res.features.length > 0
-            );
-
-            if (validCollections.length === 0) {
-              setPolygons(null);
-              setIsPending(true);
-
-              setStatusMessage(
-                `Satellite analysis for ${city} (${startYear} → ${endYear}) is not available yet.`
-              );
-            } else {
-              const combinedFeatures = [];
-
-              validCollections.forEach((coll) => {
-                combinedFeatures.push(...coll.features);
-              });
-
-              setPolygons({
-                type: "FeatureCollection",
-                features: combinedFeatures
-              });
-
-              setIsPending(false);
-              setStatusMessage("");
-            }
-          })
-
-          .catch(() => {
-            setPolygons(null);
-            setIsPending(true);
-
-            setStatusMessage(
-              `Satellite analysis for ${city} (${startYear} → ${endYear}) is not available yet.`
-            );
-          });
+        setPolygons(null);
+        setIsPending(true);
+        setStatusMessage(`Data loading error for ${targetPlace}`);
       })
-
       .finally(() => {
         setLoading(false);
       });
-  }, [city, startYear, endYear]);
+  }, [city, startYear, endYear, targetPlace, targetCategory]);
 
   function getCategoryColor(category) {
     if (category === "New Buildings") return "#e74c3c";
@@ -449,21 +388,45 @@ function Map() {
       f.properties?.area_m2 || 0;
   });
 
-  const intervalTrends =
-    Object.values(intervalTrendMap);
+  useEffect(() => {
+    if (onStatsUpdate && polygons) {
+      const summary = polygons.summary || {
+        total_changes: totalPolygonsCount,
+        total_area_m2: totalAreaM2,
+        total_area_km2: (totalAreaM2 / 1000000).toFixed(2),
+        total_area_ha: (totalAreaM2 / 10000).toFixed(1),
+        category_breakdown: categoryBreakdown
+      };
+      onStatsUpdate({
+        placeInfo: polygons.place || { query: targetPlace, search_mode: "locality" },
+        summary: summary,
+        totalCount: summary.total_changes || totalPolygonsCount,
+        totalAreaM2: summary.total_area_m2 || totalAreaM2,
+        totalAreaKm2: summary.total_area_km2 || (totalAreaM2 / 1000000).toFixed(2),
+        totalAreaHa: summary.total_area_ha || (totalAreaM2 / 10000).toFixed(1),
+        categoryBreakdown: summary.category_breakdown || categoryBreakdown,
+        returnedFeatures: polygons.returned_features || allFeatures.length,
+        matchedLocality: polygons.matched_locality || targetPlace,
+        status: polygons.status
+      });
+    }
+  }, [polygons, activeSearch?.categoryFilter]);
+
+  const intervalTrends = Object.values(intervalTrendMap);
 
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "20px",
+        gap: "16px",
         width: "100%",
+        height: height,
         fontFamily: "sans-serif"
       }}
     >
       {/* TOP CONTROLS BAR */}
-
+      {showControls && (
       <div
         style={{
           background: "rgba(15, 23, 42, 0.95)",
@@ -658,6 +621,7 @@ function Map() {
           )}
         </div>
       </div>
+      )}
 
       {/* MAIN CONTENT */}
 
@@ -825,6 +789,18 @@ function Map() {
               }
               city={city}
             />
+            <MapRecenterToBounds
+              features={filteredPolygons?.features}
+              placeInfo={polygons?.place}
+            />
+
+            {polygons?.place?.search_mode === "point_radius" && polygons.place.latitude && polygons.place.longitude && (
+              <Circle
+                center={[polygons.place.latitude, polygons.place.longitude]}
+                radius={polygons.place.radius_m || 2000}
+                pathOptions={{ color: "#38bdf8", fillColor: "#38bdf8", fillOpacity: 0.08, weight: 2, dashArray: "6, 6" }}
+              />
+            )}
 
             <LayersControl position="topright">
               <LayersControl.BaseLayer

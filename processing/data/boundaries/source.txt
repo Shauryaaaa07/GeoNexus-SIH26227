@@ -1,0 +1,5 @@
+Source: Official GADM v4.1 / Survey of India Administrative Boundary Dataset (Delhi NCT)
+Access Date: 2026-09-08
+Description: Official administrative boundary polygon of National Capital Territory of Delhi (NCT).
+CRS: EPSG:4326 (WGS84)
+Target Projection: EPSG:32643 (UTM Zone 43N)

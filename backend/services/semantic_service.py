@@ -1,336 +1,125 @@
-from services.satellite_service import search_sentinel_images
-from data.locations import LOCATIONS
-import numpy as np
 import re
+from services.db_service import search_change_records
+
+VALID_LOCALITIES = [
+    "narela", "alipur", "civil lines", "rohini", "model town",
+    "chandni chowk", "karol bagh", "connaught place", "punjabi bagh",
+    "paschim vihar", "janakpuri", "dwarka", "najafgarh", "saket",
+    "vasant kunj", "mehrauli", "hauz khas", "defence colony",
+    "kalkaji", "okhla", "sarita vihar", "mayur vihar", "shahdara",
+    "yamuna vihar"
+]
+
+CATEGORY_MAPPINGS = {
+    "building": "New Buildings",
+    "buildings": "New Buildings",
+    "construction": "New Buildings",
+    "road": "New Roads",
+    "roads": "New Roads",
+    "infrastructure": "New Roads",
+    "vegetation": "Vegetation Change",
+    "green": "Vegetation Change",
+    "tree": "Vegetation Change",
+    "trees": "Vegetation Change",
+    "water": "Water Body Change",
+    "lake": "Water Body Change",
+    "river": "Water Body Change",
+    "agricultural": "Agricultural / Land-use Change",
+    "agriculture": "Agricultural / Land-use Change",
+    "farm": "Agricultural / Land-use Change",
+    "farming": "Agricultural / Land-use Change"
+}
 
 _semantic_model = None
-_semantic_index = None
 _model_attempted = False
 
 
 def ensure_semantic_model_loaded():
-    global _semantic_model, _semantic_index, _model_attempted
+    global _semantic_model, _model_attempted
     if _model_attempted:
-        return _semantic_model, _semantic_index
-
+        return _semantic_model
     _model_attempted = True
     try:
         from sentence_transformers import SentenceTransformer
-        import faiss
-
-        model = SentenceTransformer("all-MiniLM-L6-v2")
-        descriptions = [item["description"] for item in SATELLITE_DATA]
-        embeddings = model.encode(descriptions, convert_to_numpy=True).astype("float32")
-        faiss.normalize_L2(embeddings)
-        dimension = embeddings.shape[1]
-        index = faiss.IndexFlatIP(dimension)
-        index.add(embeddings)
-
-        _semantic_model = model
-        _semantic_index = index
+        _semantic_model = SentenceTransformer("all-MiniLM-L6-v2")
     except Exception as e:
-        print(f"Lazy loading semantic model failed: {e}")
+        print(f"MiniLM model lazy load status: {e}")
         _semantic_model = None
-        _semantic_index = None
-
-    return _semantic_model, _semantic_index
+    return _semantic_model
 
 
-# ==========================================
-# Satellite Metadata: 2020 to 2026
-# ==========================================
+def parse_query_entities(query: str):
+    q_lower = query.lower()
+    
+    # 1. Place extraction
+    detected_place = "Delhi"
+    for loc in VALID_LOCALITIES:
+        if loc in q_lower:
+            detected_place = loc.title()
+            break
+            
+    # 2. Year range extraction
+    years = [int(y) for y in re.findall(r"\b(202[0-6])\b", query)]
+    year_from = None
+    year_to = None
+    if len(years) >= 2:
+        year_from = min(years)
+        year_to = max(years)
+    elif len(years) == 1:
+        year_from = years[0]
+        year_to = 2026
 
-SATELLITE_DATA = []
-
-locations = [
-    "Delhi",
-    "Mumbai",
-    "Bengaluru",
-    "Hyderabad",
-    "Chennai"
-]
-
-
-for location in locations:
-
-    for year in range(2020, 2027):
-
-        SATELLITE_DATA.append({
-            "id": f"{location.lower()}_{year}",
-            "location": location,
-            "year": year,
-            "description": f"{location} satellite image from {year}"
-        })
-
-
-# ==========================================
-# Extract Location and Year
-# ==========================================
-
-def extract_location_and_year(query: str):
-
-    query_lower = query.lower()
-
-    detected_location = None
-    detected_year = None
-
-
-    # Detect location
-    for location in locations:
-
-        if location.lower() in query_lower:
-
-            detected_location = location
-
+    # 3. Category extraction
+    detected_category = None
+    for kw, cat in CATEGORY_MAPPINGS.items():
+        if kw in q_lower:
+            detected_category = cat
             break
 
+    return detected_place, year_from, year_to, detected_category
 
-    # Detect year
-    years = re.findall(
-        r"\b(2020|2021|2022|2023|2024|2025|2026)\b",
-        query
+
+def semantic_search(query: str, top_k: int = 50):
+    place, year_from, year_to, category = parse_query_entities(query)
+    
+    res = search_change_records(
+        place=place,
+        year_from=year_from,
+        year_to=year_to,
+        category=category,
+        limit=top_k
     )
 
-
-    if years:
-
-        detected_year = int(years[0])
-
-
-    return detected_location, detected_year
-
-
-# ==========================================
-# Semantic Search
-# ==========================================
-
-def semantic_search(
-    query: str,
-    top_k: int = 5
-):
-    model, index = ensure_semantic_model_loaded()
-
-    if model is None or index is None:
-        results = []
-        for item in SATELLITE_DATA:
-            if query.lower() in item["description"].lower() or query.lower() in item["location"].lower():
-                res = item.copy()
-                res["similarity_score"] = 1.0
-                results.append(res)
-        return results[:top_k]
-
-    try:
-        import faiss
-
-        query_embedding = model.encode([query], convert_to_numpy=True).astype("float32")
-        faiss.normalize_L2(query_embedding)
-
-        scores, indices = index.search(
-            query_embedding,
-            top_k
-        )
-
-        results = []
-        for score, idx in zip(scores[0], indices[0]):
-            if idx == -1:
-                continue
-
-            item = SATELLITE_DATA[idx].copy()
-            item["similarity_score"] = round(float(score), 4)
-            results.append(item)
-
-        return results
-    except Exception as e:
-        print(f"Error executing semantic search model: {e}")
-        results = []
-        for item in SATELLITE_DATA:
-            if query.lower() in item["description"].lower() or query.lower() in item["location"].lower():
-                res = item.copy()
-                res["similarity_score"] = 1.0
-                results.append(res)
-        return results[:top_k]
-
-
-# ==========================================
-# Select Best Satellite Image
-# ==========================================
-
-def select_best_satellite_image(images):
-
-    """
-    Available satellite images me se
-    lowest cloud cover wali image select karta hai.
-    """
-
-    if not images:
-
-        return None
-
-
-    # Sirf wahi images jinka cloud cover available hai
-    valid_images = [
-        image
-        for image in images
-        if image.get("cloud_cover") is not None
-    ]
-
-
-    # Agar kisi image ka cloud cover available nahi hai
-    if not valid_images:
-
-        return images[0]
-
-
-    # Lowest cloud cover wali image
-    best_image = min(
-        valid_images,
-        key=lambda image: image["cloud_cover"]
-    )
-
-
-    return best_image
-
-
-# ==========================================
-# Real Satellite Search using Copernicus STAC
-# ==========================================
-
-def search_real_satellite_data(query: str):
-
-    """
-    Natural language query se location aur year
-    identify karke Copernicus STAC se real
-    Sentinel-2 metadata search karta hai.
-    """
-
-
-    # ------------------------------------------
-    # Extract location and year
-    # ------------------------------------------
-
-    location, year = extract_location_and_year(
-        query
-    )
-
-
-    # ------------------------------------------
-    # Location check
-    # ------------------------------------------
-
-    if not location:
-
-        return {
-            "status": "error",
-            "message": (
-                "Location not found. "
-                "Try Delhi, Mumbai, Bengaluru, "
-                "Hyderabad or Chennai."
-            )
-        }
-
-
-    # ------------------------------------------
-    # Year check
-    # ------------------------------------------
-
-    if not year:
-
-        return {
-            "status": "error",
-            "message": (
-                "Year not found. "
-                "Supported years: 2020 to 2026."
-            )
-        }
-
-
-    # ------------------------------------------
-    # Convert location to key
-    # ------------------------------------------
-
-    location_key = location.lower()
-
-
-    # ------------------------------------------
-    # Get location information
-    # ------------------------------------------
-
-    location_data = LOCATIONS.get(
-        location_key
-    )
-
-
-    if not location_data:
-
-        return {
-            "status": "error",
-            "message": (
-                f"Location '{location}' "
-                "is not supported."
-            )
-        }
-
-
-    # ------------------------------------------
-    # Get bounding box
-    # ------------------------------------------
-
-    bbox = location_data["bbox"]
-
-
-    # ------------------------------------------
-    # Date range for selected year
-    # ------------------------------------------
-
-    start_date = f"{year}-01-01"
-    end_date = f"{year}-12-31"
-
-
-    # ------------------------------------------
-    # Search Copernicus STAC
-    # ------------------------------------------
-
-    images = search_sentinel_images(
-        bbox=bbox,
-        start_date=start_date,
-        end_date=end_date,
-        max_cloud_cover=30
-    )
-
-
-    # ------------------------------------------
-    # Select best image
-    # ------------------------------------------
-
-    best_image = select_best_satellite_image(
-        images
-    )
-
-
-    # ------------------------------------------
-    # Final response
-    # ------------------------------------------
+    # Optional MiniLM score ranking enhancement
+    model = ensure_semantic_model_loaded()
+    features = res.get("features", [])
+    
+    if model and features:
+        try:
+            query_emb = model.encode(query, convert_to_numpy=True)
+            for f in features:
+                props = f["properties"]
+                desc = f"{props.get('category')} in {props.get('locality')} from {props.get('year_from')} to {props.get('year_to')}"
+                desc_emb = model.encode(desc, convert_to_numpy=True)
+                score = float(np.dot(query_emb, desc_emb) / (np.linalg.norm(query_emb) * np.linalg.norm(desc_emb) + 1e-6))
+                props["similarity_score"] = round(score, 3)
+        except Exception:
+            pass
 
     return {
-        "status": "success",
-
+        "status": res.get("status", "success"),
         "query": query,
-
-        "location": {
-            "id": location_key,
-            "name": location_data["name"]
+        "parsed_intent": {
+            "place": place,
+            "year_from": year_from,
+            "year_to": year_to,
+            "category": category
         },
-
-        "year": year,
-
-        "date_range": {
-            "start": start_date,
-            "end": end_date
-        },
-
-        "satellite": "Sentinel-2",
-
-        "count": len(images),
-
-        "best_image": best_image
+        "count": res.get("count", 0),
+        "total_area_km2": res.get("total_area_km2", 0.0),
+        "results": features[:top_k]
     }
+
+
+def search_real_satellite_data(query: str):
+    return semantic_search(query=query, top_k=20)

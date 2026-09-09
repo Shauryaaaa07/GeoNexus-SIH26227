@@ -198,24 +198,37 @@ function QueryPanel({ start, end }) {
   );
 }
 
-export default function Section05() {
+export default function Section05({ activeSearch, setActiveSearch }) {
   const [dashboardStats, setDashboardStats] = useState(null);
   const [searchResults, setSearchResults] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
 
+  const [query, setQuery] = useState(
+    activeSearch?.place
+      ? `Show change in ${activeSearch.place} between ${activeSearch.yearFrom || 2020} and ${activeSearch.yearTo || 2026}`
+      : "Show the difference between Delhi 2020 and 2026"
+  );
+
+  const [start, setStart] = useState(activeSearch?.yearFrom || 2020);
+  const [end, setEnd] = useState(activeSearch?.yearTo || 2026);
+
+  useEffect(() => {
+    if (activeSearch) {
+      if (activeSearch.yearFrom) setStart(activeSearch.yearFrom);
+      if (activeSearch.yearTo) setEnd(activeSearch.yearTo);
+      if (activeSearch.place) {
+        setQuery(`Show change in ${activeSearch.place} between ${activeSearch.yearFrom || 2020} and ${activeSearch.yearTo || 2026}`);
+      }
+    }
+  }, [activeSearch?.place, activeSearch?.yearFrom, activeSearch?.yearTo]);
+
   // backend se stats le rahe hain
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/dashboard/stats`)
+    fetch(`${API_BASE_URL}/api/dashboard/stats?year_from=${start}&year_to=${end}`)
       .then((res) => res.json())
       .then((data) => setDashboardStats(data))
       .catch((err) => console.log("Dashboard stats error:", err));
-  }, []);
-  const [query, setQuery] = useState(
-    "Show the difference between Delhi 2020 and 2023"
-  );
-
-  const [start, setStart] = useState(2020);
-  const [end, setEnd] = useState(2023);
+  }, [start, end]);
 
   const [activeCategory, setActiveCategory] =
     useState("URBAN GROWTH");

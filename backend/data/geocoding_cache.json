@@ -1,0 +1,90 @@
+{
+  "gtb nagar": {
+    "query": "GTB Nagar",
+    "display_name": "GTB Nagar, Mahatma Gandhi Marg, Civil Lines, Delhi, North Delhi, Delhi, 110009, India",
+    "latitude": 28.6981333,
+    "longitude": 77.2063998,
+    "admin_locality": "Civil Lines",
+    "inside_delhi": true
+  },
+  "malviya nagar": {
+    "query": "Malviya Nagar",
+    "display_name": "Malviya Nagar, South, Delhi, South Delhi, Delhi, India",
+    "latitude": 28.5339201,
+    "longitude": 77.2124474,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": true
+  },
+  "khan market": {
+    "query": "Khan Market",
+    "display_name": "Khan Market, Rabindra Nagar, Central Vista, New Delhi, Delhi, 110003, India",
+    "latitude": 28.5995141,
+    "longitude": 77.2259785,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": true
+  },
+  "preet vihar": {
+    "query": "Preet Vihar",
+    "display_name": "Preet Vihar, Vikas Marg, D Block, Preet Vihar, Indraprastha Extension, Shahdara South, Delhi, East Delhi, Delhi, 110051, India",
+    "latitude": 28.6414409,
+    "longitude": 77.2952594,
+    "admin_locality": "Shahdara",
+    "inside_delhi": true
+  },
+  "ashok vihar": {
+    "query": "Ashok Vihar",
+    "display_name": "Ashok Vihar, North West Delhi, Delhi, 110052, India",
+    "latitude": 28.6885,
+    "longitude": 77.1739,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": true
+  },
+  "jasola": {
+    "query": "Jasola",
+    "display_name": "Jasola, Delhi, South East Delhi, Delhi, India",
+    "latitude": 28.5427353,
+    "longitude": 77.2913342,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": true
+  },
+  "aerocity": {
+    "query": "Aerocity",
+    "display_name": "Aerocity, Manhattan Drive, Mahipalpur, Najafgarh, Delhi, South West Delhi, Delhi, 110037, India",
+    "latitude": 28.54799,
+    "longitude": 77.1212395,
+    "admin_locality": "Najafgarh",
+    "inside_delhi": true
+  },
+  "green park": {
+    "query": "Green Park",
+    "display_name": "Green Park, South, Delhi, South Delhi, Delhi, India",
+    "latitude": 28.5564421,
+    "longitude": 77.2038699,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": true
+  },
+  "tilak nagar": {
+    "query": "Tilak Nagar",
+    "display_name": "Tilak Nagar, Tilak Nagar Round About, West, Delhi, West Delhi, Delhi, 110018, India",
+    "latitude": 28.6365482,
+    "longitude": 77.0964961,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": true
+  },
+  "gurugram": {
+    "query": "Gurugram",
+    "display_name": "Gurugram, Haryana, India",
+    "latitude": 28.4646148,
+    "longitude": 77.0299194,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": false
+  },
+  "noida": {
+    "query": "Noida",
+    "display_name": "Noida, Dadri, Gautam Buddha Nagar, Uttar Pradesh, India",
+    "latitude": 28.5706333,
+    "longitude": 77.3272147,
+    "admin_locality": "Delhi NCT",
+    "inside_delhi": false
+  }
+}

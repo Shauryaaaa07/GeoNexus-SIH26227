@@ -1,0 +1,1448 @@
+{
+  "provenance_manifest": {
+    "2020": [
+      {
+        "year": 2020,
+        "stac_item_id": "S2A_43RFM_20200214_0_L2A",
+        "datetime": "2020-02-14T05:41:00.058000Z",
+        "platform": "sentinel-2a",
+        "mgrs_tile": "MGRS-43RFM",
+        "cloud_cover": 1.86586,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 922.22,
+        "delhi_coverage_contrib_pct": 62.19,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RFM_20200214_0_L2A/B02.tif",
+            "file_size_bytes": 218679103,
+            "sha256": "bd21fb8b0e7c19f84097948415be85dae84d39c26a836d002cd3c7ca476839ec",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560392,
+            "nodata_pixels": 8,
+            "min": 1.0,
+            "max": 19968.0,
+            "mean": 447.79
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RFM_20200214_0_L2A/B03.tif",
+            "file_size_bytes": 225179363,
+            "sha256": "9d13f29f9d44cccf95db3c7276b68e0aefc03c594a6db93b31c374c25fcc5b2b",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560392,
+            "nodata_pixels": 8,
+            "min": 1.0,
+            "max": 18528.0,
+            "mean": 767.37
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RFM_20200214_0_L2A/B04.tif",
+            "file_size_bytes": 231920404,
+            "sha256": "bd1020e1fa228f9df8b4da5dcd5ff694ced983ce3e6fd1a9b46e10cb6d7f8bd8",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560392,
+            "nodata_pixels": 8,
+            "min": 1.0,
+            "max": 17504.0,
+            "mean": 704.39
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RFM_20200214_0_L2A/B08.tif",
+            "file_size_bytes": 249114243,
+            "sha256": "bcf83c25c88377edf934ffd9fe7c6db3b7d1a56927a41a9cda2db4d09aa363fa",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560194,
+            "nodata_pixels": 206,
+            "min": 1.0,
+            "max": 16561.0,
+            "mean": 3210.55
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RFM_20200214_0_L2A/B11.tif",
+            "file_size_bytes": 60437519,
+            "sha256": "bb03f0ac3181361c6871e8bb143bbc8cab1a340141e74f106543ffaa4073cf0f",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140097,
+            "nodata_pixels": 3,
+            "min": 66.0,
+            "max": 15398.0,
+            "mean": 1708.86
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RFM_20200214_0_L2A/SCL.tif",
+            "file_size_bytes": 3883216,
+            "sha256": "c41082cd6c6076c3e923f8301cd3b146ef17d4358b36b3562dfebbcb0bcbb1de",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140098,
+            "nodata_pixels": 2,
+            "min": 2.0,
+            "max": 10.0,
+            "mean": 4.45
+          }
+        }
+      },
+      {
+        "year": 2020,
+        "stac_item_id": "S2A_43RGN_20200214_1_L2A",
+        "datetime": "2020-02-14T05:40:42.235000Z",
+        "platform": "sentinel-2a",
+        "mgrs_tile": "MGRS-43RGN",
+        "cloud_cover": 0.000455,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 27.11,
+        "delhi_coverage_contrib_pct": 1.83,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RGN_20200214_1_L2A/B02.tif",
+            "file_size_bytes": 219125532,
+            "sha256": "6732bd86d46526d150ae2d1c3b81dedccc08ea95098bd43d372457e7ed480496",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 11728.0,
+            "mean": 458.17
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RGN_20200214_1_L2A/B03.tif",
+            "file_size_bytes": 223085581,
+            "sha256": "8701a25a9b79d8da60cecf3525d6b99c5d70aa8c03de3b899d3eaa3d4ff1ef76",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 60.0,
+            "max": 9240.0,
+            "mean": 693.78
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RGN_20200214_1_L2A/B04.tif",
+            "file_size_bytes": 231550586,
+            "sha256": "229710295695a43832bf1dcce71f9e95747941028699bb6b78c1655a73e1c48e",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 11200.0,
+            "mean": 662.29
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RGN_20200214_1_L2A/B08.tif",
+            "file_size_bytes": 252625824,
+            "sha256": "51ef9646a424c8e9c740e4beb34e9621e0c538d7f67e80e2a5d005ec6f635340",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 51.0,
+            "max": 11409.0,
+            "mean": 2501.49
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RGN_20200214_1_L2A/B11.tif",
+            "file_size_bytes": 61457646,
+            "sha256": "c45eb2431d6b0c97dc329034b72a9f2029a6c32c046edd4aed9a553fd4839b8a",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15284.0,
+            "mean": 1722.9
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2020/S2A_43RGN_20200214_1_L2A/SCL.tif",
+            "file_size_bytes": 5091989,
+            "sha256": "35d653e5995974842b699d773b21a7e182dce6e22e72d9f0432cdb9602053ff8",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 4.0,
+            "max": 11.0,
+            "mean": 4.37
+          }
+        }
+      }
+    ],
+    "2021": [
+      {
+        "year": 2021,
+        "stac_item_id": "S2A_43RFM_20210208_1_L2A",
+        "datetime": "2021-02-08T05:41:05.881000Z",
+        "platform": "sentinel-2a",
+        "mgrs_tile": "MGRS-43RFM",
+        "cloud_cover": 0.000206,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 947.55,
+        "delhi_coverage_contrib_pct": 63.89,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RFM_20210208_1_L2A/B02.tif",
+            "file_size_bytes": 215699267,
+            "sha256": "ad776ab6cb0b8f7042508bb8b1f6f18919fd1f9b84c0a8bd968ac63ab4306b4b",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120559721,
+            "nodata_pixels": 679,
+            "min": 1.0,
+            "max": 13104.0,
+            "mean": 485.84
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RFM_20210208_1_L2A/B03.tif",
+            "file_size_bytes": 219702050,
+            "sha256": "e332dce176dd2bb474aa744a70973618d3fad980770f6b2dbc94b5e150ad4863",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560399,
+            "nodata_pixels": 1,
+            "min": 1.0,
+            "max": 12376.0,
+            "mean": 800.84
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RFM_20210208_1_L2A/B04.tif",
+            "file_size_bytes": 227867576,
+            "sha256": "a3dfac721c08064da9032c0683f60509104746801cf13d08ff524646e47c1669",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560364,
+            "nodata_pixels": 36,
+            "min": 1.0,
+            "max": 16104.0,
+            "mean": 716.67
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RFM_20210208_1_L2A/B08.tif",
+            "file_size_bytes": 247904200,
+            "sha256": "2f03ca332e4814f88d332cef79fffe7404300a50c51f78bd6ae0c69244509ff0",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560370,
+            "nodata_pixels": 30,
+            "min": 1.0,
+            "max": 17593.0,
+            "mean": 3237.31
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RFM_20210208_1_L2A/B11.tif",
+            "file_size_bytes": 60279359,
+            "sha256": "59f34e8870ec69ff5564915962d6d2ec51e2f9833727b65e2c738fa496d493df",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 19.0,
+            "max": 15674.0,
+            "mean": 1719.79
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RFM_20210208_1_L2A/SCL.tif",
+            "file_size_bytes": 2722232,
+            "sha256": "c4fda6c7885d6c3692fe5c11e32e8b10791638d037f49631f921d8d3d645a1a3",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 2.0,
+            "max": 10.0,
+            "mean": 4.32
+          }
+        }
+      },
+      {
+        "year": 2021,
+        "stac_item_id": "S2A_43RGM_20210208_1_L2A",
+        "datetime": "2021-02-08T05:41:02.601000Z",
+        "platform": "sentinel-2a",
+        "mgrs_tile": "MGRS-43RGM",
+        "cloud_cover": 9.3e-05,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 996.52,
+        "delhi_coverage_contrib_pct": 67.2,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RGM_20210208_1_L2A/B02.tif",
+            "file_size_bytes": 219012734,
+            "sha256": "2d4045eaacc34395be1926e32298440bf8bdfd9f47685699457d7a3c90b38889",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120557492,
+            "nodata_pixels": 2908,
+            "min": 1.0,
+            "max": 25944.0,
+            "mean": 481.21
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RGM_20210208_1_L2A/B03.tif",
+            "file_size_bytes": 221597489,
+            "sha256": "629196233e831b5a58e89bc7df0811f6c841b000317a0bf4696026547cc23e24",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560396,
+            "nodata_pixels": 4,
+            "min": 1.0,
+            "max": 23016.0,
+            "mean": 756.25
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RGM_20210208_1_L2A/B04.tif",
+            "file_size_bytes": 228748912,
+            "sha256": "5d3e582c078d709f5f4656c0c6e63b58ed40bd99abfdabc922dd803f6465edf9",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560175,
+            "nodata_pixels": 225,
+            "min": 1.0,
+            "max": 20776.0,
+            "mean": 688.31
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RGM_20210208_1_L2A/B08.tif",
+            "file_size_bytes": 249615558,
+            "sha256": "348672e8b93a49028e58b520e1f95164c0b752b38fd2d777563af5539c06d0f9",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560353,
+            "nodata_pixels": 47,
+            "min": 1.0,
+            "max": 18664.0,
+            "mean": 2951.66
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RGM_20210208_1_L2A/B11.tif",
+            "file_size_bytes": 60588001,
+            "sha256": "f59d2a59316b7f7511faac9162fa19a155f46fcd2a0b41e9896c5572ef3495db",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15973.0,
+            "mean": 1691.76
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2021/S2A_43RGM_20210208_1_L2A/SCL.tif",
+            "file_size_bytes": 3292734,
+            "sha256": "d8f49dca32cd55b16d844a417c8810b7a9fbbf3b61cfdcf6c0586806215bba00",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 4.0,
+            "max": 10.0,
+            "mean": 4.41
+          }
+        }
+      }
+    ],
+    "2022": [
+      {
+        "year": 2022,
+        "stac_item_id": "S2A_43RFM_20220213_0_L2A",
+        "datetime": "2022-02-13T05:41:06.592000Z",
+        "platform": "sentinel-2a",
+        "mgrs_tile": "MGRS-43RFM",
+        "cloud_cover": 0.000385,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 922.22,
+        "delhi_coverage_contrib_pct": 62.19,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RFM_20220213_0_L2A/B02.tif",
+            "file_size_bytes": 217291941,
+            "sha256": "529962fc65c3e82616772f3548fab64de1bee47fc31582d260ed149b9f6174f6",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120559809,
+            "nodata_pixels": 591,
+            "min": 1.0,
+            "max": 22016.0,
+            "mean": 1360.53
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RFM_20220213_0_L2A/B03.tif",
+            "file_size_bytes": 221633150,
+            "sha256": "cd79808d03ec5cc4e6828f856b4d10ba315ee2fa8aa02c66eb0bcd3aa60a52bc",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560391,
+            "nodata_pixels": 9,
+            "min": 1.0,
+            "max": 20352.0,
+            "mean": 1694.35
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RFM_20220213_0_L2A/B04.tif",
+            "file_size_bytes": 228967120,
+            "sha256": "460e005c3738ca339d3644b6c1911f3392e123cb1607eebad3838b8ce68d8877",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560393,
+            "nodata_pixels": 7,
+            "min": 642.0,
+            "max": 19120.0,
+            "mean": 1609.13
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RFM_20220213_0_L2A/B08.tif",
+            "file_size_bytes": 249324347,
+            "sha256": "f17cc98839434429f3c9297377b24b91e4ad3c2df67456a97b8999b59dd93b44",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560321,
+            "nodata_pixels": 79,
+            "min": 1.0,
+            "max": 17955.0,
+            "mean": 4170.18
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RFM_20220213_0_L2A/B11.tif",
+            "file_size_bytes": 59910243,
+            "sha256": "cc3d19b0c64341c8224af546c93e3b7356395eb0c06597e9c24357260b4c2ef6",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 948.0,
+            "max": 16502.0,
+            "mean": 2616.95
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RFM_20220213_0_L2A/SCL.tif",
+            "file_size_bytes": 2883951,
+            "sha256": "d06c42d3a066204733b0f84bf6ec01576b9a072b956d23bc6c4755eb3950ea92",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 4.0,
+            "max": 10.0,
+            "mean": 4.29
+          }
+        }
+      },
+      {
+        "year": 2022,
+        "stac_item_id": "S2A_43RGM_20220213_0_L2A",
+        "datetime": "2022-02-13T05:41:03.321000Z",
+        "platform": "sentinel-2a",
+        "mgrs_tile": "MGRS-43RGM",
+        "cloud_cover": 1.3e-05,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 1051.35,
+        "delhi_coverage_contrib_pct": 70.89,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RGM_20220213_0_L2A/B02.tif",
+            "file_size_bytes": 220069450,
+            "sha256": "d69e17fec4ea3587bc826f5da0cbba0e4746864dc0a732bc7d886484d7612eda",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120559445,
+            "nodata_pixels": 955,
+            "min": 1.0,
+            "max": 23632.0,
+            "mean": 1433.72
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RGM_20220213_0_L2A/B03.tif",
+            "file_size_bytes": 224074286,
+            "sha256": "a1db661b855e686617a4bfd68d19659e409ae2186162c5b2a55f61e4988dcbe9",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560383,
+            "nodata_pixels": 17,
+            "min": 1.0,
+            "max": 21536.0,
+            "mean": 1711.63
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RGM_20220213_0_L2A/B04.tif",
+            "file_size_bytes": 230743990,
+            "sha256": "e98259c535e796a34332f018464b071e8741a45277a6181dd7401143847cac03",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560369,
+            "nodata_pixels": 31,
+            "min": 488.0,
+            "max": 20000.0,
+            "mean": 1636.11
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RGM_20220213_0_L2A/B08.tif",
+            "file_size_bytes": 251761443,
+            "sha256": "2a29dd8c883307d36460a5ea9a0be25e3690451d70ca6972fbe3b46885c45652",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560320,
+            "nodata_pixels": 80,
+            "min": 1.0,
+            "max": 18466.0,
+            "mean": 3950.43
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RGM_20220213_0_L2A/B11.tif",
+            "file_size_bytes": 60550948,
+            "sha256": "75f9dc316a571775280227113fb9df4efc3cc8af0f0d22bffd5e8f7e54abf747",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 859.0,
+            "max": 16648.0,
+            "mean": 2651.83
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2022/S2A_43RGM_20220213_0_L2A/SCL.tif",
+            "file_size_bytes": 3518813,
+            "sha256": "25e645e365bf4f12ced3feae1bcc05bec2df9339111e805fdba9002cd802915a",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 4.0,
+            "max": 10.0,
+            "mean": 4.35
+          }
+        }
+      }
+    ],
+    "2023": [
+      {
+        "year": 2023,
+        "stac_item_id": "S2B_43RFM_20230203_0_L2A",
+        "datetime": "2023-02-03T05:41:03.655000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RFM",
+        "cloud_cover": 6.3e-05,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 947.55,
+        "delhi_coverage_contrib_pct": 63.89,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RFM_20230203_0_L2A/B02.tif",
+            "file_size_bytes": 215313365,
+            "sha256": "aee18a43b21c4fafdd4a555670d1673aaa41425716d9f7a079d8c6f02ed0081e",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 19944.0,
+            "mean": 460.38
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RFM_20230203_0_L2A/B03.tif",
+            "file_size_bytes": 221136697,
+            "sha256": "bb00c6a548958fc608fe2475be1f3c637e3d30c707dba7fe1b6d48673dfc6426",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 18568.0,
+            "mean": 731.85
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RFM_20230203_0_L2A/B04.tif",
+            "file_size_bytes": 227754800,
+            "sha256": "74497ed22c69dfe295686ec7258a924fca03c7f5a768d3f533bcbc3c53e19110",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 17496.0,
+            "mean": 634.36
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RFM_20230203_0_L2A/B08.tif",
+            "file_size_bytes": 250158212,
+            "sha256": "88a2c041aa45fd9f6261767d2027264c39ef2cd172251dfc4e215cbeb9b2c74b",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 16456.0,
+            "mean": 3179.05
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RFM_20230203_0_L2A/B11.tif",
+            "file_size_bytes": 60097077,
+            "sha256": "40fb64675c9fb92309585d8e392bc6d2fc0a4b457326eed0f6923b80f0a764d6",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 16.0,
+            "max": 15387.0,
+            "mean": 1606.78
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RFM_20230203_0_L2A/SCL.tif",
+            "file_size_bytes": 2911411,
+            "sha256": "c6f87119b4a66b5b7bccc53317672307a9330fe9f4e595f629e9b2a5ca903303",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 4.0,
+            "max": 10.0,
+            "mean": 4.29
+          }
+        }
+      },
+      {
+        "year": 2023,
+        "stac_item_id": "S2B_43RGM_20230203_0_L2A",
+        "datetime": "2023-02-03T05:41:00.397000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RGM",
+        "cloud_cover": 0.000199,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 996.52,
+        "delhi_coverage_contrib_pct": 67.2,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RGM_20230203_0_L2A/B02.tif",
+            "file_size_bytes": 218633512,
+            "sha256": "5406393cde4118ce1dee1a902c605c923413e54fb3b938579d830257e0b1605b",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 20520.0,
+            "mean": 528.68
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RGM_20230203_0_L2A/B03.tif",
+            "file_size_bytes": 222675474,
+            "sha256": "6dd823cbe2651c6e3b33aca1b4d35e366f0029f354f206ed54d1c7c21d0df6f9",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 18936.0,
+            "mean": 731.41
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RGM_20230203_0_L2A/B04.tif",
+            "file_size_bytes": 229619908,
+            "sha256": "4786c48f0328fe606ac83fdf973ae18facbe8cab4be92362e483c417b54b5970",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 17816.0,
+            "mean": 655.28
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RGM_20230203_0_L2A/B08.tif",
+            "file_size_bytes": 251855145,
+            "sha256": "c61b09c33f4f293deb849a304b08c3dcf2c3c58ac4c85798b27b2c6d30429183",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560397,
+            "nodata_pixels": 3,
+            "min": 1.0,
+            "max": 16682.0,
+            "mean": 2874.15
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RGM_20230203_0_L2A/B11.tif",
+            "file_size_bytes": 60638965,
+            "sha256": "0ad780a4840ed3612d990f72734ec8204f07bebc7c71e60f78a1e9e81c435871",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15443.0,
+            "mean": 1634.45
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2023/S2B_43RGM_20230203_0_L2A/SCL.tif",
+            "file_size_bytes": 3761620,
+            "sha256": "926e5f140f6d17422580c46e0b83875db7f790527ffe21f0b9e186b2bbd4f938",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 4.0,
+            "max": 10.0,
+            "mean": 4.36
+          }
+        }
+      }
+    ],
+    "2024": [
+      {
+        "year": 2024,
+        "stac_item_id": "S2B_43RFM_20240208_0_L2A",
+        "datetime": "2024-02-08T05:41:06.587000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RFM",
+        "cloud_cover": 70.149374,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 922.22,
+        "delhi_coverage_contrib_pct": 62.19,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RFM_20240208_0_L2A/B02.tif",
+            "file_size_bytes": 197833767,
+            "sha256": "8fbb08192176027bf9434a95d19f8558fa93b2db46102669dc5b5ec5ef77a5e3",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560236,
+            "nodata_pixels": 164,
+            "min": 1.0,
+            "max": 15256.0,
+            "mean": 1565.09
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RFM_20240208_0_L2A/B03.tif",
+            "file_size_bytes": 197862584,
+            "sha256": "251118bcf0afd5fb3659698f48adb28105c3d7560c7fb0e54b15e7afbf7bd030",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560397,
+            "nodata_pixels": 3,
+            "min": 1.0,
+            "max": 17608.0,
+            "mean": 1614.23
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RFM_20240208_0_L2A/B04.tif",
+            "file_size_bytes": 205229814,
+            "sha256": "56ba2f1669c590771f9f1ddcacf21e0c7ce6efc56a8ebdda38a781e367383b21",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 17208.0,
+            "mean": 1441.87
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RFM_20240208_0_L2A/B08.tif",
+            "file_size_bytes": 214851916,
+            "sha256": "0986fab78c5d024fc2f799bc0721f3cfa0ae7c9e1a3366c57e9fea1e02686f2c",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 16393.0,
+            "mean": 3422.71
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RFM_20240208_0_L2A/B11.tif",
+            "file_size_bytes": 55050099,
+            "sha256": "2de631aa2e338f0a05417c2eae529dfe25dcab92c3f54a2e5ac5b972139e92a6",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 21.0,
+            "max": 15329.0,
+            "mean": 1709.99
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RFM_20240208_0_L2A/SCL.tif",
+            "file_size_bytes": 2156512,
+            "sha256": "fb152763a4f3783a19b1602f9212854dd64aeed0ece6680a05974b3b3204fa35",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 2.0,
+            "max": 10.0,
+            "mean": 7.6
+          }
+        }
+      },
+      {
+        "year": 2024,
+        "stac_item_id": "S2B_43RGM_20240208_0_L2A",
+        "datetime": "2024-02-08T05:41:03.319000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RGM",
+        "cloud_cover": 53.137028,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 996.52,
+        "delhi_coverage_contrib_pct": 67.2,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RGM_20240208_0_L2A/B02.tif",
+            "file_size_bytes": 205635842,
+            "sha256": "ff07ba13c221ccfb7dd36492e5dcf08440107f61d40261e81c8e527896f25086",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560350,
+            "nodata_pixels": 50,
+            "min": 1.0,
+            "max": 18344.0,
+            "mean": 1365.33
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RGM_20240208_0_L2A/B03.tif",
+            "file_size_bytes": 206695164,
+            "sha256": "20b96ad76a2aa63f0a313be7706eb183bc20befe14cc3588abdfc50ae6e38583",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 12.0,
+            "max": 17368.0,
+            "mean": 1431.96
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RGM_20240208_0_L2A/B04.tif",
+            "file_size_bytes": 213919287,
+            "sha256": "2bdd67588869e6e4c7e470210ce747380895566309fc4edc9ab2ad9f58785c8a",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 16632.0,
+            "mean": 1304.91
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RGM_20240208_0_L2A/B08.tif",
+            "file_size_bytes": 230114220,
+            "sha256": "6d103a0fe113bda550b53e31b87f47f2362a7cb31533e756417cbd2e5b5a0634",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15993.0,
+            "mean": 3125.71
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RGM_20240208_0_L2A/B11.tif",
+            "file_size_bytes": 56743162,
+            "sha256": "4b3e509854b9bfdb89abd06170149f85abf26a1f856e69daac6fc4d7c4e095a8",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15219.0,
+            "mean": 1722.65
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2024/S2B_43RGM_20240208_0_L2A/SCL.tif",
+            "file_size_bytes": 3071160,
+            "sha256": "17cfaff934a063bd541326f5f996eb97c5687eb9876b858af5d3d36fbf3482d7",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 3.0,
+            "max": 10.0,
+            "mean": 6.87
+          }
+        }
+      }
+    ],
+    "2025": [
+      {
+        "year": 2025,
+        "stac_item_id": "S2B_43RFM_20250212_0_L2A",
+        "datetime": "2025-02-12T05:41:10.455000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RFM",
+        "cloud_cover": 0.000813,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 922.22,
+        "delhi_coverage_contrib_pct": 62.19,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RFM_20250212_0_L2A/B02.tif",
+            "file_size_bytes": 217067871,
+            "sha256": "b55f719420d0407a3fe52473b75781b5739c66b2e8037d1e17f3088cfd4ea733",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 20168.0,
+            "mean": 483.29
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RFM_20250212_0_L2A/B03.tif",
+            "file_size_bytes": 222747699,
+            "sha256": "635e5a65af1498f5b5adf080e82522f0c93f067e90d30c33a8cf563d7fbc0fde",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 18696.0,
+            "mean": 746.47
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RFM_20250212_0_L2A/B04.tif",
+            "file_size_bytes": 228929418,
+            "sha256": "2ead55327bb931348de5a1188cb2b37d93fc0b5a22b7940d5f5098e2f964b4af",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560399,
+            "nodata_pixels": 1,
+            "min": 1.0,
+            "max": 17736.0,
+            "mean": 653.2
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RFM_20250212_0_L2A/B08.tif",
+            "file_size_bytes": 250560756,
+            "sha256": "7535b1d66aaccb556f596d2c660cfee5fd4e85d6ed1a3307ea31fb09be96d464",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560398,
+            "nodata_pixels": 2,
+            "min": 1.0,
+            "max": 16617.0,
+            "mean": 3343.32
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RFM_20250212_0_L2A/B11.tif",
+            "file_size_bytes": 60472340,
+            "sha256": "3cbf51dde8e102876bdca9dba3220d9f7f4b550b02eb97f5c619abd32188f36f",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15412.0,
+            "mean": 1683.32
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RFM_20250212_0_L2A/SCL.tif",
+            "file_size_bytes": 2843895,
+            "sha256": "8ae8f299ce4862d0e06c00c697e7b637e2d31e1448820b865e10f83ceb165840",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 2.0,
+            "max": 10.0,
+            "mean": 4.28
+          }
+        }
+      },
+      {
+        "year": 2025,
+        "stac_item_id": "S2B_43RGM_20250212_0_L2A",
+        "datetime": "2025-02-12T05:41:07.182000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RGM",
+        "cloud_cover": 0.000139,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 996.52,
+        "delhi_coverage_contrib_pct": 67.2,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RGM_20250212_0_L2A/B02.tif",
+            "file_size_bytes": 220126393,
+            "sha256": "b3582ebfa3cfe8bc532cd2f9ed8c1acbccca653c14ca3c3a11dbe0a00979007d",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 19448.0,
+            "mean": 538.78
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RGM_20250212_0_L2A/B03.tif",
+            "file_size_bytes": 223938472,
+            "sha256": "6b1884385f3a47ee15cfce39989d5f63082c17f1975bd24778f7ea1640f1024b",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 18168.0,
+            "mean": 740.32
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RGM_20250212_0_L2A/B04.tif",
+            "file_size_bytes": 230257371,
+            "sha256": "c98f344fcd0ec434308bb63ea2e6cccc8135ef8d306de8e991880197074e52d6",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 17240.0,
+            "mean": 680.19
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RGM_20250212_0_L2A/B08.tif",
+            "file_size_bytes": 252692135,
+            "sha256": "e352c8d87f5537632e8abd9b3d09b759dc3317a534057ff35b3c89a19fd7cb68",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 16330.0,
+            "mean": 2992.22
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RGM_20250212_0_L2A/B11.tif",
+            "file_size_bytes": 60787722,
+            "sha256": "b8328b0b9369b1d41d58a95c821efcb1b9aa368a466df315a1f708f0a93ffc39",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 21.0,
+            "max": 15333.0,
+            "mean": 1687.45
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2025/S2B_43RGM_20250212_0_L2A/SCL.tif",
+            "file_size_bytes": 3596945,
+            "sha256": "100439872dd34d5e7a23c10a32622203e4b3109d27362e8348d8361b3794b936",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 4.0,
+            "max": 10.0,
+            "mean": 4.35
+          }
+        }
+      }
+    ],
+    "2026": [
+      {
+        "year": 2026,
+        "stac_item_id": "S2B_43RFM_20260207_0_L2A",
+        "datetime": "2026-02-07T05:41:01.272000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RFM",
+        "cloud_cover": 17.445731,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 922.22,
+        "delhi_coverage_contrib_pct": 62.19,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RFM_20260207_0_L2A/B02.tif",
+            "file_size_bytes": 217270685,
+            "sha256": "3883278d854be22a85c108b200dcc0fc04e5bd0e2f773267d5ecb74fe2a7d189",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560279,
+            "nodata_pixels": 121,
+            "min": 1.0,
+            "max": 23184.0,
+            "mean": 517.6
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RFM_20260207_0_L2A/B03.tif",
+            "file_size_bytes": 221992748,
+            "sha256": "e395c134a1b89ba362e7fcc4d382d736fec05932fb250b2c99353a1bafcae2fc",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 21055.0,
+            "mean": 795.39
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RFM_20260207_0_L2A/B04.tif",
+            "file_size_bytes": 227003840,
+            "sha256": "90516756ceaf5e51feaf054b3dffdd6a0e7c7d6bb78dce67cf52f99fb4f8792e",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560400,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 19307.0,
+            "mean": 679.58
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RFM_20260207_0_L2A/B08.tif",
+            "file_size_bytes": 249128438,
+            "sha256": "13169f3653895ac6c266790d29d990b7f76aeb0598a178f7c176bba9000e6c19",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560395,
+            "nodata_pixels": 5,
+            "min": 1.0,
+            "max": 17403.0,
+            "mean": 3318.45
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RFM_20260207_0_L2A/B11.tif",
+            "file_size_bytes": 59658806,
+            "sha256": "bacfd557010c1a4f085a534d72c73b22c190b1ae502f9606120c72c28c07abb6",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15745.0,
+            "mean": 1680.12
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RFM_20260207_0_L2A/SCL.tif",
+            "file_size_bytes": 2665713,
+            "sha256": "b93c0bdc9565e03947ff4d4b1a309adee8d2cf54ce695cd6f56e78fe99697ce1",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 2.0,
+            "max": 10.0,
+            "mean": 5.3
+          }
+        }
+      },
+      {
+        "year": 2026,
+        "stac_item_id": "S2B_43RGM_20260207_0_L2A",
+        "datetime": "2026-02-07T05:40:58.008000Z",
+        "platform": "sentinel-2b",
+        "mgrs_tile": "MGRS-43RGM",
+        "cloud_cover": 12.523343,
+        "collection": "sentinel-2-l2a",
+        "delhi_intersection_km2": 996.52,
+        "delhi_coverage_contrib_pct": 67.2,
+        "files": {
+          "B02.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RGM_20260207_0_L2A/B02.tif",
+            "file_size_bytes": 221878043,
+            "sha256": "50af08e4d931effecd85c7b91858238cb6a214932cea33c7a4dccd1ce9bab0d5",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120559858,
+            "nodata_pixels": 542,
+            "min": 1.0,
+            "max": 24766.0,
+            "mean": 543.99
+          },
+          "B03.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RGM_20260207_0_L2A/B03.tif",
+            "file_size_bytes": 224815047,
+            "sha256": "35dfced728767e1d1f7e5e0894210a516a4c160162daff6c5e8c071438fad5a0",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560393,
+            "nodata_pixels": 7,
+            "min": 1.0,
+            "max": 22266.0,
+            "mean": 790.14
+          },
+          "B04.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RGM_20260207_0_L2A/B04.tif",
+            "file_size_bytes": 230915771,
+            "sha256": "d57f9dad9cd8cf1bbab8e492dfedd981d6ce29c543b3149f9d6df3cbe2358dba",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560394,
+            "nodata_pixels": 6,
+            "min": 1.0,
+            "max": 20352.0,
+            "mean": 711.37
+          },
+          "B08.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RGM_20260207_0_L2A/B08.tif",
+            "file_size_bytes": 250979063,
+            "sha256": "172220a3777cba7f1213c63b68cdba28188dca73abe07c7da9d017dcf65e4a8c",
+            "dimensions": [
+              10980,
+              10980
+            ],
+            "valid_pixels": 120560363,
+            "nodata_pixels": 37,
+            "min": 1.0,
+            "max": 18234.0,
+            "mean": 2969.72
+          },
+          "B11.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RGM_20260207_0_L2A/B11.tif",
+            "file_size_bytes": 60316369,
+            "sha256": "37af52caa902e0c20383eb3734c258d7eb9c65a6f63b458e97584a547109f907",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 1.0,
+            "max": 15864.0,
+            "mean": 1750.7
+          },
+          "SCL.tif": {
+            "relative_path": "processing/data/raw/delhi/2026/S2B_43RGM_20260207_0_L2A/SCL.tif",
+            "file_size_bytes": 3397253,
+            "sha256": "afce218ae65ac73cffb3b1b0701a8c02cebe9a0853b60ec999875a06cc67164b",
+            "dimensions": [
+              5490,
+              5490
+            ],
+            "valid_pixels": 30140100,
+            "nodata_pixels": 0,
+            "min": 3.0,
+            "max": 10.0,
+            "mean": 5.12
+          }
+        }
+      }
+    ]
+  },
+  "coverage_summary": {
+    "2020": {
+      "total_delhi_km2": 1483.0,
+      "covered_delhi_km2": 925.46,
+      "coverage_pct": 62.4,
+      "num_scenes": 2,
+      "items": [
+        "S2A_43RFM_20200214_0_L2A",
+        "S2A_43RGN_20200214_1_L2A"
+      ]
+    },
+    "2021": {
+      "total_delhi_km2": 1483.0,
+      "covered_delhi_km2": 1483.0,
+      "coverage_pct": 100.0,
+      "num_scenes": 2,
+      "items": [
+        "S2A_43RFM_20210208_1_L2A",
+        "S2A_43RGM_20210208_1_L2A"
+      ]
+    },
+    "2022": {
+      "total_delhi_km2": 1483.0,
+      "covered_delhi_km2": 1483.0,
+      "coverage_pct": 100.0,
+      "num_scenes": 2,
+      "items": [
+        "S2A_43RFM_20220213_0_L2A",
+        "S2A_43RGM_20220213_0_L2A"
+      ]
+    },
+    "2023": {
+      "total_delhi_km2": 1483.0,
+      "covered_delhi_km2": 1483.0,
+      "coverage_pct": 100.0,
+      "num_scenes": 2,
+      "items": [
+        "S2B_43RFM_20230203_0_L2A",
+        "S2B_43RGM_20230203_0_L2A"
+      ]
+    },
+    "2024": {
+      "total_delhi_km2": 1483.0,
+      "covered_delhi_km2": 1483.0,
+      "coverage_pct": 100.0,
+      "num_scenes": 2,
+      "items": [
+        "S2B_43RFM_20240208_0_L2A",
+        "S2B_43RGM_20240208_0_L2A"
+      ]
+    },
+    "2025": {
+      "total_delhi_km2": 1483.0,
+      "covered_delhi_km2": 1483.0,
+      "coverage_pct": 100.0,
+      "num_scenes": 2,
+      "items": [
+        "S2B_43RFM_20250212_0_L2A",
+        "S2B_43RGM_20250212_0_L2A"
+      ]
+    },
+    "2026": {
+      "total_delhi_km2": 1483.0,
+      "covered_delhi_km2": 1483.0,
+      "coverage_pct": 100.0,
+      "num_scenes": 2,
+      "items": [
+        "S2B_43RFM_20260207_0_L2A",
+        "S2B_43RGM_20260207_0_L2A"
+      ]
+    }
+  }
+}

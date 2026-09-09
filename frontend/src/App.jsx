@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react";
 import logo from "./assets/geonexus-logo.png"
 import earth from "./assets/geonexus-earth.png"
 import satellite from "./assets/geonexus-satellite.png"
@@ -938,11 +938,18 @@ function App() {
   }, [])
 
 
+  const [activeSearch, setActiveSearch] = useState({
+    place: "Dwarka Sector 10",
+    yearFrom: 2020,
+    yearTo: 2026,
+    category: "All",
+    radius: "Entire Delhi",
+    categoryFilter: "All"
+  });
+
   return (
 
     <div className="app">
-
-
       {/* =========================
           WEBGL GALAXY STARFIELD
       ========================= */}
@@ -972,246 +979,56 @@ function App() {
 
       </div>
 
-
-      {/* =========================
-          NAVBAR
-      ========================= */}
-
+      {/* NAV, HERO, EARTH CHANGES, PROCESS */}
       <nav className="navbar">
-
         <div className="brand">
-
-          <img
-            src={logo}
-            alt="GeoNexus logo"
-          />
-
+          <img src={logo} alt="GeoNexus logo" />
           <div>
-
-            <div className="brand-name">
-              GeoNexus
-            </div>
-
-            <div className="brand-subtitle">
-              EARTH INTELLIGENCE
-            </div>
-
+            <div className="brand-name">GeoNexus</div>
+            <div className="brand-subtitle">EARTH INTELLIGENCE</div>
           </div>
-
         </div>
-
-
         <div className="nav-links">
-
-          <a href="#vision">
-
-            <span></span>
-
-            VISION
-
-          </a>
-
-
-          <a href="#search">
-
-            <span></span>
-
-            SEARCH
-
-          </a>
-
-
-          <a href="#analytics">
-
-            <span></span>
-
-            ANALYTICS
-
-          </a>
-
-
-          <a href="#about">
-
-            <span></span>
-
-            ABOUT
-
-          </a>
-
+          <a href="#vision"><span></span>VISION</a>
+          <a href="#search"><span></span>SEARCH</a>
+          <a href="#analytics"><span></span>ANALYTICS</a>
+          <a href="#about"><span></span>ABOUT</a>
         </div>
-
-
         <div className="nav-right">
-
-          <div className="status">
-
-            <span className="status-dot"></span>
-
-            SYSTEM ONLINE
-
-          </div>
-
-
-          <button className="explore-btn">
-
-            EXPLORE
-
-            <span>→</span>
-
-          </button>
-
+          <div className="status"><span className="status-dot"></span>SYSTEM ONLINE</div>
+          <button className="explore-btn">EXPLORE <span>→</span></button>
         </div>
-
       </nav>
 
-
-      {/* =========================
-          HERO SECTION
-      ========================= */}
-
-      <section
-        className="hero"
-        id="vision"
-      >
-
-
-        {/* =========================
-            LEFT CONTENT
-        ========================= */}
-
+      <section className="hero" id="vision">
         <div className="hero-content">
-
-          <div className="platform-label">
-
-            ───────── GEONEXUS PLATFORM V1.0
-
-          </div>
-
-
-          <h1>
-
-            Turning Earth’s
-
-            <br />
-
-            Changes into
-
-            <br />
-
-            <span>
-              Intelligence.
-            </span>
-
-          </h1>
-
-
-          <p className="hero-description">
-
-            Semantic retrieval and multi-temporal
-            analysis of satellite imagery to detect,
-            understand and monitor changes that matter.
-
-          </p>
-
-
+          <div className="platform-label">───────── GEONEXUS PLATFORM V1.0</div>
+          <h1>Turning Earth’s<br />Changes into<br /><span>Intelligence.</span></h1>
+          <p className="hero-description">Semantic retrieval and multi-temporal analysis of satellite imagery to detect, understand and monitor changes that matter.</p>
           <div className="hero-buttons">
-
-            <button className="primary-btn">
-
-              EXPLORE DASHBOARD →
-
-            </button>
-
-
-            <button className="secondary-btn">
-
-              LEARN MORE
-
-            </button>
-
+            <button className="primary-btn">EXPLORE DASHBOARD →</button>
+            <button className="secondary-btn">LEARN MORE</button>
           </div>
-
         </div>
-
-
-        {/* =========================
-            EARTH VISUAL
-        ========================= */}
-
         <div className="hero-visual">
-
-
-          {/* LIVE DATA HUD */}
-
-          <div className="hud-label">
-
-            <span className="hud-dot"></span>
-
-            LIVE SATELLITE DATA
-
-          </div>
-
-
-          {/* COORDINATES */}
-
-          <div className="hud-coordinate">
-
-            28.6139° N
-
-            <br />
-
-            77.2090° E
-
-          </div>
-
-
-          {/* =========================
-              FIXED ORBIT 1
-              SATELLITE ORBIT
-          ========================= */}
-
+          <div className="hud-label"><span className="hud-dot"></span>LIVE SATELLITE DATA</div>
+          <div className="hud-coordinate">28.6139° N<br />77.2090° E</div>
           <div className="earth-orbit orbit-1">
-
-            <img
-              src={satellite}
-              alt="GeoNexus satellite"
-              className="orbit-satellite"
-            />
-
+            <img src={satellite} alt="GeoNexus satellite" className="orbit-satellite" />
           </div>
-
-
-          {/* =========================
-              ROTATING VISUAL ORBITS
-          ========================= */}
-
           <div className="earth-orbit orbit-2"></div>
-
           <div className="earth-orbit orbit-3"></div>
-
-
-          {/* =========================
-              EARTH
-          ========================= */}
-
-          <img
-            src={earth}
-            alt="Earth satellite visualization"
-            className="hero-earth"
-          />
-
+          <img src={earth} alt="Earth satellite visualization" className="hero-earth" />
         </div>
-
       </section>
+
       <EarthChangesSection />
-  <Process />
-  <Section04/>
-  <Section05 />
-<Section06 />
+      <Process />
+      <Section04 activeSearch={activeSearch} setActiveSearch={setActiveSearch} />
+      <Section05 activeSearch={activeSearch} setActiveSearch={setActiveSearch} />
+      <Section06 />
     </div>
-
   )
-
 }
 
 export default App

@@ -13,11 +13,16 @@ __pycache__/
 node_modules/
 dist/
 
-# Raw Sentinel-2 data packages
+# Raw Sentinel-2 data packages & raster files
 *.SAFE/
 *.zip
 *.jp2
+*.tif
+processing/data/raw/
+processing/data/processed/
+processing/data/mock_delhi/
 
 # System files
 .DS_Store
 Thumbs.db
+

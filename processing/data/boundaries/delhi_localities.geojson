@@ -1,0 +1,853 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Narela",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.16,
+              28.8
+            ],
+            [
+              77.02,
+              28.8
+            ],
+            [
+              77.02,
+              28.8169214843504
+            ],
+            [
+              77.03709394402676,
+              28.828317457299928
+            ],
+            [
+              77.11823742449864,
+              28.855370582492533
+            ],
+            [
+              77.16,
+              28.83448766740746
+            ],
+            [
+              77.16,
+              28.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Alipur",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.22,
+              28.76
+            ],
+            [
+              77.1,
+              28.76
+            ],
+            [
+              77.1,
+              28.84929025015673
+            ],
+            [
+              77.11823742449864,
+              28.855370582492533
+            ],
+            [
+              77.19036784501388,
+              28.819302561576976
+            ],
+            [
+              77.22,
+              28.789672262947064
+            ],
+            [
+              77.22,
+              28.76
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Civil Lines",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.18,
+              28.66
+            ],
+            [
+              77.18,
+              28.74
+            ],
+            [
+              77.25,
+              28.74
+            ],
+            [
+              77.25,
+              28.66
+            ],
+            [
+              77.18,
+              28.66
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Rohini",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.05,
+              28.69
+            ],
+            [
+              77.05,
+              28.78
+            ],
+            [
+              77.16,
+              28.78
+            ],
+            [
+              77.16,
+              28.69
+            ],
+            [
+              77.05,
+              28.69
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Model Town",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.16,
+              28.68
+            ],
+            [
+              77.16,
+              28.74
+            ],
+            [
+              77.22,
+              28.74
+            ],
+            [
+              77.22,
+              28.68
+            ],
+            [
+              77.16,
+              28.68
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Chandni Chowk",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.2,
+              28.64
+            ],
+            [
+              77.2,
+              28.67
+            ],
+            [
+              77.25,
+              28.67
+            ],
+            [
+              77.25,
+              28.64
+            ],
+            [
+              77.2,
+              28.64
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Karol Bagh",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.16,
+              28.63
+            ],
+            [
+              77.16,
+              28.67
+            ],
+            [
+              77.21,
+              28.67
+            ],
+            [
+              77.21,
+              28.63
+            ],
+            [
+              77.16,
+              28.63
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Connaught Place",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.2,
+              28.62
+            ],
+            [
+              77.2,
+              28.64
+            ],
+            [
+              77.23,
+              28.64
+            ],
+            [
+              77.23,
+              28.62
+            ],
+            [
+              77.2,
+              28.62
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Punjabi Bagh",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.1,
+              28.65
+            ],
+            [
+              77.1,
+              28.69
+            ],
+            [
+              77.16,
+              28.69
+            ],
+            [
+              77.16,
+              28.65
+            ],
+            [
+              77.1,
+              28.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Paschim Vihar",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.06,
+              28.65
+            ],
+            [
+              77.06,
+              28.69
+            ],
+            [
+              77.11,
+              28.69
+            ],
+            [
+              77.11,
+              28.65
+            ],
+            [
+              77.06,
+              28.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Janakpuri",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.06,
+              28.6
+            ],
+            [
+              77.06,
+              28.65
+            ],
+            [
+              77.11,
+              28.65
+            ],
+            [
+              77.11,
+              28.6
+            ],
+            [
+              77.06,
+              28.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Dwarka",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.99,
+              28.54
+            ],
+            [
+              76.99,
+              28.61
+            ],
+            [
+              77.08,
+              28.61
+            ],
+            [
+              77.08,
+              28.54
+            ],
+            [
+              76.99,
+              28.54
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Najafgarh",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.0,
+              28.66
+            ],
+            [
+              77.0,
+              28.54
+            ],
+            [
+              76.86578556109158,
+              28.54
+            ],
+            [
+              76.88828532532246,
+              28.620922432331277
+            ],
+            [
+              76.89697745556204,
+              28.66
+            ],
+            [
+              77.0,
+              28.66
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Saket",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.18,
+              28.5
+            ],
+            [
+              77.18,
+              28.54
+            ],
+            [
+              77.23,
+              28.54
+            ],
+            [
+              77.23,
+              28.5
+            ],
+            [
+              77.18,
+              28.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Vasant Kunj",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.12,
+              28.5
+            ],
+            [
+              77.12,
+              28.55
+            ],
+            [
+              77.18,
+              28.55
+            ],
+            [
+              77.18,
+              28.5
+            ],
+            [
+              77.12,
+              28.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Mehrauli",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.16,
+              28.48
+            ],
+            [
+              77.16,
+              28.53
+            ],
+            [
+              77.22,
+              28.53
+            ],
+            [
+              77.22,
+              28.48
+            ],
+            [
+              77.16,
+              28.48
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Hauz Khas",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.18,
+              28.53
+            ],
+            [
+              77.18,
+              28.56
+            ],
+            [
+              77.22,
+              28.56
+            ],
+            [
+              77.22,
+              28.53
+            ],
+            [
+              77.18,
+              28.53
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Defence Colony",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.21,
+              28.56
+            ],
+            [
+              77.21,
+              28.59
+            ],
+            [
+              77.25,
+              28.59
+            ],
+            [
+              77.25,
+              28.56
+            ],
+            [
+              77.21,
+              28.56
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Kalkaji",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.23,
+              28.52
+            ],
+            [
+              77.23,
+              28.56
+            ],
+            [
+              77.28,
+              28.56
+            ],
+            [
+              77.28,
+              28.52
+            ],
+            [
+              77.23,
+              28.52
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Okhla",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.25,
+              28.52
+            ],
+            [
+              77.25,
+              28.57
+            ],
+            [
+              77.31,
+              28.57
+            ],
+            [
+              77.31,
+              28.558089216180136
+            ],
+            [
+              77.29572365727495,
+              28.52
+            ],
+            [
+              77.25,
+              28.52
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Sarita Vihar",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.28,
+              28.52
+            ],
+            [
+              77.28,
+              28.56
+            ],
+            [
+              77.31071618708447,
+              28.56
+            ],
+            [
+              77.29572365727495,
+              28.52
+            ],
+            [
+              77.28,
+              28.52
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Mayur Vihar",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.28,
+              28.58
+            ],
+            [
+              77.28,
+              28.62
+            ],
+            [
+              77.3122238604115,
+              28.62
+            ],
+            [
+              77.31623261524271,
+              28.58
+            ],
+            [
+              77.28,
+              28.58
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Shahdara",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.26,
+              28.65
+            ],
+            [
+              77.26,
+              28.72
+            ],
+            [
+              77.27324590083253,
+              28.72
+            ],
+            [
+              77.30761268898691,
+              28.66601100959039
+            ],
+            [
+              77.3092172942881,
+              28.65
+            ],
+            [
+              77.26,
+              28.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "locality": "Yamuna Vihar",
+        "city": "Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.29,
+              28.69
+            ],
+            [
+              77.25,
+              28.69
+            ],
+            [
+              77.25,
+              28.73
+            ],
+            [
+              77.26688038299388,
+              28.73
+            ],
+            [
+              77.29,
+              28.69367991168651
+            ],
+            [
+              77.29,
+              28.69
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
